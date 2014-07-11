@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Main</title><script type="text/javascript" src="elm-runtime.js"></script><script type="text/javascript">Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values)
+   return _elm.Main.values;
+   var _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   _A = _N.Array.make(_elm),
+   _E = _N.Error.make(_elm),
+   $moduleName = "Main";
+   var Basics = Elm.Basics.make(_elm);
+   var Color = Elm.Color.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Collage = Elm.Graphics.Collage.make(_elm);
+   var Graphics = Graphics || {};
+   Graphics.Element = Elm.Graphics.Element.make(_elm);
+   var List = Elm.List.make(_elm);
+   var Maybe = Elm.Maybe.make(_elm);
+   var Native = Native || {};
+   Native.Json = Elm.Native.Json.make(_elm);
+   var Native = Native || {};
+   Native.Ports = Elm.Native.Ports.make(_elm);
+   var Signal = Elm.Signal.make(_elm);
+   var String = Elm.String.make(_elm);
+   var Text = Elm.Text.make(_elm);
+   var Time = Elm.Time.make(_elm);
+   var Window = Elm.Window.make(_elm);
+   var _op = {};
+   var content = Text.leftAligned(Text.toText("\n  The idea is to use Elm to create a great website!\n  I\'m really excited to get started with it, it\'s such\n  an exciting platform, and I hope to eventually combine\n  it with some backend usefulness! \n"));
+   var title = Text.centered(Text.toText("Mystery\'s Elmtastic Webzone"));
+   var render = function (sp) {
+      return function () {
+         var leftbar = A2(Graphics.Element.color,
+         Color.black,
+         A2(Graphics.Element.spacer,
+         80,
+         sp.y));
+         return A2(Graphics.Element.flow,
+         Graphics.Element.right,
+         _L.fromArray([leftbar
+                      ,A2(Graphics.Element.flow,
+                      Graphics.Element.down,
+                      _L.fromArray([title
+                                   ,content]))]));
+      }();
+   };
+   var space = {_: {},y: 0};
+   var scrollSecs = 0.8;
+   var myFps = 60;
+   var step = F2(function (y,sp) {
+      return function () {
+         var delta = Basics.round(Basics.toFloat(y) / (scrollSecs * myFps));
+         return _U.cmp(sp.y,
+         y) > -1 ? sp : _U.replace([["y"
+                                    ,sp.y + delta]],
+         sp);
+      }();
+   });
+   var main = A2(Signal.lift,
+   render,
+   A3(Signal.foldp,
+   step,
+   space,
+   A2(Signal.sampleOn,
+   Time.fps(myFps),
+   Window.height)));
+   _elm.Main.values = {_op: _op
+                      ,myFps: myFps
+                      ,scrollSecs: scrollSecs
+                      ,space: space
+                      ,step: step
+                      ,title: title
+                      ,content: content
+                      ,render: render
+                      ,main: main};
+   return _elm.Main.values;
+};</script></head><body><script type="text/javascript">Elm.fullscreen(Elm.Main)</script><noscript></noscript></body></html>
