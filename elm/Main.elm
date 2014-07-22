@@ -1,7 +1,7 @@
 import Window
 
 myFps = 60
-scrollSecs = 0.8
+scrollSecs = 1.5
 
 -- MODEL
 

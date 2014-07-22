@@ -1,0 +1,16 @@
+# Site settings
+
+title: Mystery Works
+email: salomaobecker@gmail.com 
+description: "For later!"
+baseurl: ""
+url: "mysterymachine.github.io"
+twitter_username: MysterySal
+github_username:  MysteryMachine
+
+paginate: 5
+paginate_file: index.html
+
+# Build settings
+markdown: kramdown
+permalink: pretty

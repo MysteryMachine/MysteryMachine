@@ -47,18 +47,18 @@ Elm.Main.make = function (_elm) {
                                    ,content]))]));
       }();
    };
-   var space = {_: {},y: 0};
-   var scrollSecs = 0.8;
-   var myFps = 60;
    var step = F2(function (y,sp) {
       return function () {
-         var delta = Basics.round(Basics.toFloat(y) / (scrollSecs * myFps));
+         var delta = 10;
          return _U.cmp(sp.y,
          y) > -1 ? sp : _U.replace([["y"
                                     ,sp.y + delta]],
          sp);
       }();
    });
+   var space = {_: {},y: 0};
+   var scrollSecs = 1.5;
+   var myFps = 60;
    var main = A2(Signal.lift,
    render,
    A3(Signal.foldp,
