@@ -5,8 +5,6 @@ date:   2014-07-21 22:30:00
 categories: introduction natureza
 ---
 
-Woo!
----
 Alright! So, after managing to not be out on the streets after leaving community college to get a job in programming, a year later, I am here, gainfully employed at an amazing company (did you know [Priori Legal](http://www.priorilegal.com) can help _your_ small bussiness find a great lawyer at fixed prices?), facing two weeks off to get something done. Now, as a happy-go-lucky programmer with a chip on my shoulder, I have not been a big fan of sitting down and doing nothing on my vacation, much less spending money to sit down and do nothing on my vacation, and, while the Dark Souls II expansion looks absolutely bonkers, I plan on using my time more productively. That's right, it's a two week game making marathon!
 
 What is Natureza?
@@ -19,15 +17,16 @@ Natureza aims to create a simple village building game that comprises of the maj
 
 Phase One
 ---
-Natureza phase 1 will only involve building the basic Dwarf Fortress style gameplay that will be the base for the game. The initial bit of the game will involve primarily the initial bits of survival required to set up the society in the game. This will include:
-* The ability to harvest stone, wood, and plants
-* The ability to turn these resources into structures
-* The ability to build tools from these structures
-* The ability to plant and harvest plants
-* Villagers should be able to die from thirst, hunger, and cold
+Natureza phase 1 will only involve building the basic Dwarf Fortress style gameplay that will be the base for the game. The initial bit of the game will involve primarily the initial bits of survival required to set up the society in the game. This will include
+
+*	The ability to harvest stone, wood, and plants
+*	The ability to turn these resources into structures
+*	The ability to build tools from these structures
+*	The ability to plant and harvest plants
+*	Villagers should be able to die from thirst, hunger, and cold
 
 Conclusion
 ---
-I'll be starting sometime this weekend! I'll be posting working builds on the blog for (probably no one) to test. When the game is adequately developed, I'll probably build some form of server-side saving, but, uh, until then, there will probably be no saving. The game will be very primitive for a while, probably past the jam. Along will the current version of the game attached, there will be interesting bits of code attached, along with a discussion.
+I'll be starting sometime this weekend! I'll be posting working builds on the blog for (probably no one) to test. When the game is adequately developed, I'll probably build some form of server-side saving, but, uh, until then, there will probably be no saving. The game will be very primitive for a while, probably past the jam. Along with the current version of the game attached, there will be interesting bits of code attached, along with a discussion.
 
 Thanks for reading!
