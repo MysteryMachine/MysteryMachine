@@ -6,7 +6,7 @@ categories: natureza elm
 ---
 
 <div id="natureza0d0d1"></div>
-<script src="js/Natureza-build-0.0.1.js"></script>
+<script src="/js/Natureza-build-0.0.1.js"></script>
 <script>
 	Elm.embed(Elm.Natureza0d0d1, document.getElementById('natureza0d0d1'));
 </script>
