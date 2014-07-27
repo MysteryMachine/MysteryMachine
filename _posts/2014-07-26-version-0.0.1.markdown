@@ -11,9 +11,7 @@ categories: natureza elm
 	Elm.embed(Elm.Natureza0d0d1, document.getElementById('natureza0d0d1'));
 </script>
 
-So, my first bit of <code>Elm</code> is written! I'm starting to get a sense of how the language works, though I admit I still feel relatively challenged by it. The type system in <code>Elm</code> has some constraints that I'm finding hard to work with. I'm sure it is something that also belongs to Haskell, but, for example, having to implicitly convert <code>Int</code> into <code>Float</code> has been challenging. I'm sure it has its benefits, but it was a source of headaches for me. Once I took a more proactive approach to ensuring <code>Int</code>s were explicity <code>Int</code>s and <code>Float</code> were explicitly <code>Float</code>, the type checker was a little more cooperative with me.
-
-In general, I've found that if, in <code>Elm</code>, explicitly declaring types helped avoid headaches with the type system in general. More often than not, without explicitly declaring types, I'd make wrong assumptions about the type of the data I was working with, and get really head-scratching type errors deep inside some other function. I think its a best practice worth following!
+So, my first bit of <code>Elm</code> is written! I'm starting to get a sense of how the language works.
 
 So what has been accomplished, so far? Not much. Right now, I have a working grid system, and it should be easy to build enitities that render easily within this system thanks to this function I built:
 
@@ -33,9 +31,7 @@ Building this function was a little more annoying than I hoped it'd be. I was ho
 	atPos : (Int, Int) -> (Float, Float)
 	atPost (x, y) = (toFloat (x*imgSize), toFloat(y*imgSize))
 	
-But <code>Elm</code> does things oddly, in terms of how it handles its graphics (as compared to some other graphics stuff I used, like <code>SFML</code>). <code>collage x y forms</code>, for example, builds a 4 quadrant grid where +x is right, -x is left, +y is up, and -y is down. This is different than what I've encountered before, where there are no negative coordinates, +x is right, and +y is down. I like this secondary system a lot more, not only because I'm more used to working with it, but because it makes more sense for a grid system (specifically, matricies, which are ordered this way). Maybe in a game where the character is centered, thinking of the world in terms relative to the character is useful (especially if you're dealing with angles), but I think I'd be inconvenienced by this anywhere else. Plus, HTML flow down-right, so mentally I'd consider the origin of the canvas to be the top-left tip of it.
-
-So I needed to negate y, and offset both by <code>div mapLen 2</code>, which, if we paste	and image from its top-left corner (which makes most sense in the flow down-right system I'm using -- this 4 quadrant thing makes no sense to me) means (0,0) would be right where at the top-left.
+But <code>Elm</code> does things oddly, in terms of how it handles its graphics (as compared to some other graphics stuff I used, like <code>SFML</code>). <code>collage x y forms</code>, for example, builds a 4 quadrant grid where +x is right, -x is left, +y is up, and -y is down. This is different than what I've encountered before, where there are no negative coordinates, +x is right, and +y is down. A tile system like the one I'm using is a lot more like a matrix than it is a coordinate system, so the classical method of representation suited me better (though I think this four quadrant way of doing graphics is silly). So I needed to negate y, and offset both by <code>div mapLen 2</code>.
 
 With that set up, running around the array wasn't hard.
 
@@ -53,14 +49,14 @@ With that set up, running around the array wasn't hard.
 	  in
 	   foldl (++) [] <| map drawRowOfTilesFromArray range
 		 
-Some nice functional style with let, the bottom line of code is essentially a flatten function, that calls a function that returns a list of the created Form objects in that row. The two iterative functions <code>drawRowOfTilesFromArray</code> and <code>selectAndDrawTile</code> map a function on a range to loop through the array. <code>drawTile</code> takes the indicies created by these maps, converts them into positions on the screen, and creates a Form for it.
+Some nice functional style with <code>let</code>, the bottom line of code is essentially a flatten function, that calls a function that returns a list of the created <code>Form</code> objects in that row. The two iterative functions <code>drawRowOfTilesFromArray</code> and <code>selectAndDrawTile</code> map a function on a range to loop through the array. <code>drawTile</code> takes the indicies created by these maps, converts them into positions on the screen, and creates a <code>For</code> for it.
 
-First impressions were less happy than I thought they'd be. I loved using a functional style to build this, but the 4-coordinate nature of the <code>Canvas</code> threw me in for a loop and caused me confusion. Additionally, I spent forever debugging an issue caused by Elm's weird precedence rules. Apparently, <code>toFloat 1/2</code> yields 0.5, which was not expected. I expected the division to be integer division, yield zero, and then be converted to zero. After lots of searching, I found out you need to use the <code>div 1 2</code> syntax to integer divide. I guess that's fine. It's, frankly, really weird, and not exactly intuitive to me (could be my C++ background). The major problem is that toFloat apparently has the same precedence as division. I wouldn't even expect <code>toFloat 1/2</code> to compile (cause it'd turn into <code>toFloat 0.5</code> in the kind of operator precedence I'd expect, and that would be a type error).
+First impressions were less happy than I thought they'd be. I loved using a functional style to build this, but the 4-coordinate nature of the <code>Canvas</code> threw me in for a loop, and I spent more time figure that out than I would've liked. The syntax of the language is just also kinda of weird to work with, as a beginner, and I've mostly struggled with stuff like <code>log "myVaue" 1.0 / 2.0</code> spitting out 1 rather than 0.5. I get why it doesn't, but I'd just expect the division to have precedence. 
 
 It's fine, though! I'm not at all discouraged, just a little annoyed at the amount of time I had to spend debugging some basic issues. Maybe this stuff is natural to Haskell people? I think I'm getting past a lot of the basic trip ups in the language, so I should get productive soon.
 
 Next time, I add a <code>foldp</code> and some time into it! Make more, tinier squares! Have it dynamically react to window size! Maybe just one of the <code>Signal</code> based deals...but something!
 
-See the project in all its current glory [here]("https://github.com/MysteryMachine/mysterymachine.github.io/tree/natureza0n0n1/elm").
+See the project in all its current glory [here](https://github.com/MysteryMachine/mysterymachine.github.io/tree/natureza0n0n1/elm).
 
 *Note: If you're an Elm guy and my struggles are all my fault, and you have a solution, please reach out! My struggles probably ARE all my fault.*
