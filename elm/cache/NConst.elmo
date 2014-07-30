@@ -1,15 +1,15 @@
-Elm.Main = Elm.Main || {};
-Elm.Main.make = function (_elm) {
+Elm.NConst = Elm.NConst || {};
+Elm.NConst.make = function (_elm) {
    "use strict";
-   _elm.Main = _elm.Main || {};
-   if (_elm.Main.values)
-   return _elm.Main.values;
+   _elm.NConst = _elm.NConst || {};
+   if (_elm.NConst.values)
+   return _elm.NConst.values;
    var _N = Elm.Native,
    _U = _N.Utils.make(_elm),
    _L = _N.List.make(_elm),
    _A = _N.Array.make(_elm),
    _E = _N.Error.make(_elm),
-   $moduleName = "Main";
+   $moduleName = "NConst";
    var Basics = Elm.Basics.make(_elm);
    var Color = Elm.Color.make(_elm);
    var Graphics = Graphics || {};
@@ -18,8 +18,6 @@ Elm.Main.make = function (_elm) {
    Graphics.Element = Elm.Graphics.Element.make(_elm);
    var List = Elm.List.make(_elm);
    var Maybe = Elm.Maybe.make(_elm);
-   var NConst = Elm.NConst.make(_elm);
-   var NMap = Elm.NMap.make(_elm);
    var Native = Native || {};
    Native.Json = Elm.Native.Json.make(_elm);
    var Native = Native || {};
@@ -29,12 +27,16 @@ Elm.Main.make = function (_elm) {
    var Text = Elm.Text.make(_elm);
    var Time = Elm.Time.make(_elm);
    var _op = {};
-   var view = A2(Graphics.Collage.collage,
-   NConst.size,
-   NConst.size)(NMap.drawMap(NMap.tmap));
-   var main = view;
-   _elm.Main.values = {_op: _op
-                      ,view: view
-                      ,main: main};
-   return _elm.Main.values;
+   var imgSize = 100;
+   var mapLen = 5;
+   var iOffset = A2(Basics.div,
+   mapLen,
+   2);
+   var size = mapLen * imgSize;
+   _elm.NConst.values = {_op: _op
+                        ,mapLen: mapLen
+                        ,iOffset: iOffset
+                        ,imgSize: imgSize
+                        ,size: size};
+   return _elm.NConst.values;
 };

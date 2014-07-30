@@ -1,15 +1,15 @@
-Elm.Main = Elm.Main || {};
-Elm.Main.make = function (_elm) {
+Elm.NModel = Elm.NModel || {};
+Elm.NModel.make = function (_elm) {
    "use strict";
-   _elm.Main = _elm.Main || {};
-   if (_elm.Main.values)
-   return _elm.Main.values;
+   _elm.NModel = _elm.NModel || {};
+   if (_elm.NModel.values)
+   return _elm.NModel.values;
    var _N = Elm.Native,
    _U = _N.Utils.make(_elm),
    _L = _N.List.make(_elm),
    _A = _N.Array.make(_elm),
    _E = _N.Error.make(_elm),
-   $moduleName = "Main";
+   $moduleName = "NModel";
    var Basics = Elm.Basics.make(_elm);
    var Color = Elm.Color.make(_elm);
    var Graphics = Graphics || {};
@@ -18,8 +18,6 @@ Elm.Main.make = function (_elm) {
    Graphics.Element = Elm.Graphics.Element.make(_elm);
    var List = Elm.List.make(_elm);
    var Maybe = Elm.Maybe.make(_elm);
-   var NConst = Elm.NConst.make(_elm);
-   var NMap = Elm.NMap.make(_elm);
    var Native = Native || {};
    Native.Json = Elm.Native.Json.make(_elm);
    var Native = Native || {};
@@ -29,12 +27,13 @@ Elm.Main.make = function (_elm) {
    var Text = Elm.Text.make(_elm);
    var Time = Elm.Time.make(_elm);
    var _op = {};
-   var view = A2(Graphics.Collage.collage,
-   NConst.size,
-   NConst.size)(NMap.drawMap(NMap.tmap));
-   var main = view;
-   _elm.Main.values = {_op: _op
-                      ,view: view
-                      ,main: main};
-   return _elm.Main.values;
+   var emptyTile = {_: {}
+                   ,src: "http://mysterymachine.github.io/images/blanktile0d0d1.gif"};
+   var Tile = function (a) {
+      return {_: {},src: a};
+   };
+   _elm.NModel.values = {_op: _op
+                        ,emptyTile: emptyTile
+                        ,Tile: Tile};
+   return _elm.NModel.values;
 };
