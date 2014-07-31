@@ -1,10 +1,10 @@
 module NConst where
 
 mapLen : Int
-mapLen = 5
+mapLen = 50
 iOffset : Int
 iOffset = div mapLen 2
 imgSize : Int
-imgSize = 100
+imgSize = 16
 size : Int
 size = mapLen*imgSize
