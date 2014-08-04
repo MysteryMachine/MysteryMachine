@@ -1,7 +1,7 @@
 module NConst where
 
 mapLen : Int
-mapLen = 50
+mapLen = 25
 iOffset : Int
 iOffset = div mapLen 2
 imgSize : Int

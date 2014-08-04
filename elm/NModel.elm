@@ -17,8 +17,4 @@ emptyTile : Tile
 emptyTile = { src = "http://mysterymachine.github.io/images/sand0d0d2.gif" }
 
 initialState : GameState
-initialState = {
- win = { x = 800, y = 800 }, map = (repeat NConst.mapLen (repeat NConst.mapLen emptyTile)) }
-
-
-
+initialState = { win = { x = 400, y = 400 }, map = (repeat NConst.mapLen (repeat NConst.mapLen emptyTile)) }

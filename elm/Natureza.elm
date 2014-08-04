@@ -6,6 +6,7 @@ import Keyboard (keysDown, KeyCode)
 import Time (fps, Time)
 import Window (dimensions)
 import Signal (Signal, lift, lift2, sampleOn, foldp)
+import FpsCounter (fpsCounter)
 
 view : NModel.GameState ->  Element 
 view state = collage state.win.x state.win.y <| NMap.drawMap state.map
@@ -19,5 +20,8 @@ update signals state = state
 state : Signal NModel.GameState
 state = foldp update NModel.initialState signals
 
+layout cntr map = flow down [cntr,  map]
+myCounter = fpsCounter 30 30
+
 main : Signal Element
-main = lift view state 
+main = lift2 layout myCounter <| lift view state 
