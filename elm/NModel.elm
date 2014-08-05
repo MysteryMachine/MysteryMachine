@@ -1,5 +1,5 @@
 module NModel where
-import NConst as NConst
+import NConst (..) 
 import Array (repeat, Array)
 
 type Tile = {
@@ -8,13 +8,8 @@ type Tile = {
 
 type Map = Array (Array Tile)
 
-type GameState = {  
-  win : { x : Int, y : Int },
-  map : Map
-}
-
 emptyTile : Tile
-emptyTile = { src = "http://mysterymachine.github.io/images/sand0d0d2.gif" }
+emptyTile = { src = sandTile }
 
-initialState : GameState
-initialState = { win = { x = 400, y = 400 }, map = (repeat NConst.mapLen (repeat NConst.mapLen emptyTile)) }
+initialMap : Map
+initialMap = repeat mapLen (repeat mapLen emptyTile)

@@ -1,0 +1,12 @@
+{
+	"version": "0.1",
+    	"summary": "To do", "description": "This file is just for downloading dependencies",
+    	"license": "BSD3",
+    	"exposed-modules": [],
+    	"elm-version": "0.12.3",
+    	"dependencies": {
+        	"evancz/elm-html": "0.1.2",
+		"Dandandan/FpsCounter": "0.1.4"
+    	},
+	"repository" : "https://github.com/MysteryMachine/mysterymachine.github.io.git"
+}

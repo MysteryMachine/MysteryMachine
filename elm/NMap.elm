@@ -7,7 +7,10 @@ import NConst as NConst
 import NModel as NModel
 
 atPos : (Int, Int) -> (Float, Float)
-atPos (x, y) = (toFloat((x-NConst.iOffset)*NConst.imgSize), toFloat((NConst.iOffset- y)*NConst.imgSize))
+atPos (x, y) = (toFloat((x-NConst.iOffset)*NConst.imgSize), toFloat((NConst.iOffset - y)*NConst.imgSize))
+
+fromCoords : (Float, Float) -> (Int, Int)
+fromCoords (x, y) = ( (div (round x) NConst.imgSize ) + NConst.iOffset, (-1)*(div (round x) NConst.imgSize - NConst.iOffset) )
 
 drawMap : NModel.Map -> [Form]
 drawMap tmap = let 
