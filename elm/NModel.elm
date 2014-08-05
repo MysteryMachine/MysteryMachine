@@ -2,10 +2,7 @@ module NModel where
 import NConst (..) 
 import Array (repeat, Array)
 
-type Tile = {
-  src : String
-}
-
+type Tile = { src : String }
 type Map = Array (Array Tile)
 
 emptyTile : Tile
