@@ -8,9 +8,11 @@ import Time (fps, Time)
 import Window as Window
 import Signal (..)
 import FpsCounter (fpsCounter)
+import List (..)
+import Graphics.Element (..)
+import Graphics.Collage (..)
 
--- Signals
-
+-- Signals 
   -- State bearing Signals
 map : Signal Map
 map = constant initialMap
@@ -22,21 +24,29 @@ updateMap : (Int, Int) -> Map -> Map
 updateMap mouse map = map
 
 -- Views
+selectedTile : Maybe(Int, Int) -> Form
+selectedTile pos = 
+  case pos of
+    Nothing -> toForm empty
+    Just (x, y) -> drawTile x y selectionTile
+
 layout : [Element] -> Element
 layout elems = flow inward elems
 
   --  Viewport
-view : (Int, Int) -> (Int, Int) -> Map ->  Element 
-view dimensions position map = collage (min (fst dimensions) mapSize) (min (snd dimensions) mapSize) 
-  <| drawMap map  
+view : (Int, Int) -> Maybe(Int, Int) -> Map ->  Element 
+view dimensions pos map = let onMap = mapCollage dimensions
+  in flow outward 
+    [onMap (drawMap map),
+    onMap [(selectedTile pos)]] 
 
   -- FPS counter
-myCounter = fpsCounter 30 30
+myCounter = fpsCounter 30 60
 
   -- Main
 main : Signal Element
 main = layout <~ combine [myCounter, 
   view <~ Window.dimensions
-        ~ Mouse.position
+        ~ mouseAtTile
         ~ map] 
 
