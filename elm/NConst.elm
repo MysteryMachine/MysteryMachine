@@ -2,13 +2,24 @@ module NConst where
 
 -- Map and screen consts
 mapLen : Int
-mapLen = 25
-iOffset : Int
-iOffset = div mapLen 2
+mapLen = 256
+viewportLen : Int
+viewportLen = 32
+viewportH : Int
+viewportH = 32
+iOffsetX : Float
+iOffsetX = toFloat viewportLen / 2
+iOffsetY : Float
+iOffsetY = toFloat viewportH / 2
 imgSize : Int
 imgSize = 16
+imgSizeF : Float
+imgSizeF = toFloat imgSize
+imgSizeHF = imgSizeF / 2
 mapSize : Int
 mapSize = mapLen*imgSize
+viewportSize : (Int, Int)
+viewportSize = (viewportLen*imgSize, viewportH*imgSize)
 
 -- Tiles
 sandTile = "http://mysterymachine.github.io/images/sand0d0d2.gif"

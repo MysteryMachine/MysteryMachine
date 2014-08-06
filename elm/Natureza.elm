@@ -24,29 +24,26 @@ updateMap : (Int, Int) -> Map -> Map
 updateMap mouse map = map
 
 -- Views
-selectedTile : Maybe(Int, Int) -> Form
+selectedTile : Maybe(Int, Int) -> Element
 selectedTile pos = 
   case pos of
-    Nothing -> toForm empty
-    Just (x, y) -> drawTile x y selectionTile
+    Nothing -> empty
+    Just (x, y) -> mapCollage viewportSize [(drawTileVisual x y selectionTile)]
 
 layout : [Element] -> Element
 layout elems = flow inward elems
 
   --  Viewport
-view : (Int, Int) -> Maybe(Int, Int) -> Map ->  Element 
-view dimensions pos map = let onMap = mapCollage dimensions
-  in flow outward 
-    [onMap (drawMap map),
-    onMap [(selectedTile pos)]] 
+mapView : (Int, Int) -> Map ->  Element 
+mapView dimensions map = mapCollage viewportSize (drawMap map)
 
   -- FPS counter
-myCounter = fpsCounter 30 60
+myCounter = fpsCounter 30 10
 
   -- Main
 main : Signal Element
-main = layout <~ combine [myCounter, 
-  view <~ Window.dimensions
-        ~ mouseAtTile
-        ~ map] 
+main = layout <~ combine 
+  [myCounter,
+  selectedTile <~ mouseOnTile,
+  mapView <~ Window.dimensions ~ map] 
 
