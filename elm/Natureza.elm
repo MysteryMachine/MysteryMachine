@@ -1,6 +1,5 @@
-module Natureza0d0d3 where
-import NMap (..)
-import NConst (..)
+module Natureza where
+import Natureza.Map (..)
 import Mouse as Mouse
 import Keyboard as Keyboard
 import Time (fps, Time)
@@ -21,6 +20,6 @@ myCounter = fpsCounter 30 10
 main : Signal Element
 main = layout <~ combine 
   [myCounter,
-  drawSelectedTile <~ mouseOnTile,
-  drawMap <~ Window.dimensions ~ nmap] 
+  selectedTile,
+  nMapView] 
 
