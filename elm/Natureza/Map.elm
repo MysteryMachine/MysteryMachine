@@ -7,6 +7,7 @@ import Mouse as Mouse
 import Time (fps)
 import Array (repeat, Array)
 import Graphics.Element (..)
+import Natureza.Const (..)
 
 -- Signals
 mapSignal : Signal Map

@@ -2,6 +2,8 @@ module Natureza.Map.Helpers where
 import Graphics.Collage (..)
 import Graphics.Element (..)
 import Array (..)
+import Window as Window
+import Natureza.Const (..)
 -- Models
   -- Typedefs
 type Tile = { src : String }
@@ -11,15 +13,15 @@ type Map = Array (Array Tile)
 mapLen : Int
 mapLen = 256
 
-viewportDims : Signal (Int, Int)
-viewportDims = constant (32, 32)
+calcSizeX x = div (x - menuWidth) imgSize
 
-imgSize : Int
-imgSize = 16
-imgSizeF : Float
-imgSizeF = toFloat imgSize
-imgSizeHF : Float
-imgSizeHF = imgSizeF / 2
+viewportDims : Signal (Int, Int)
+viewportDims = 
+  let
+    calcSize (x, y) = (calcSizeX x, calcSizeY y)
+    calcSizeY y = div y imgSize
+  in
+    calcSize <~ Window.dimensions 
 
 mapSize : Int
 mapSize = mapLen*imgSize
