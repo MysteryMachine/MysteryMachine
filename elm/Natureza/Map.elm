@@ -1,17 +1,27 @@
 module Natureza.Map where
-import Array (Array, repeat, getOrFail, initialize, toList)
+import Array as Array
+import Array (..)
 import List (foldl, map, (++))
 import Graphics.Collage (Form, collage, toForm, move)
 import Natureza.Map.Helpers (..)
 import Mouse as Mouse
 import Time (fps)
-import Array (repeat, Array)
 import Graphics.Element (..)
 import Natureza.Const (..)
+import Graphics.Input (..)
+import Signal (..)
+import Natureza.Button (..)
+import Debug (..)
 
 -- Signals
+createMapBtn : Input MapUpdate
+createMapBtn = input NoUpdate 
+
+mapUpdateSignal : Signal MapUpdate
+mapUpdateSignal = merges [createMapBtn.signal]
+
 mapSignal : Signal Map
-mapSignal = constant initialMap
+mapSignal = foldp updateMap (repeat 1 Array.empty) mapUpdateSignal
 
 mouseOnTile: Signal (Maybe (Int, Int))
 mouseOnTile =
@@ -23,15 +33,21 @@ mouseOnTile =
       then Nothing
       else Just (x, y)
   in maybeOnMap 
-    <~ (dimensionToTileNumber <~ Mouse.position) 
+    <~ (dimensionToTileNumber <~ Mouse.position)
     ~ viewportDims
 
 -- Logic
   -- Updaters
-updateMap : (Int, Int) -> Map -> Map
-updateMap mouse map = map 
+updateMap : MapUpdate -> Map -> Map
+updateMap update map = 
+  case update of 
+    Restart newMap -> log "newMap" newMap
+    _ -> map 
 
 -- Views
+newMapBtn : Signal Element
+newMapBtn = natBtn createMapBtn.handle (Restart initialMap) "Generate a New Map!"
+
   -- Rendering
 drawSelectedTile : Maybe(Int, Int) -> (Int, Int) -> Element
 drawSelectedTile pos (x, y) = 
@@ -65,7 +81,7 @@ drawMap (x, y) tmap = let
         
     selectAndDrawTile : Int -> Int -> Form
     selectAndDrawTile i j = drawTile (i, j) offsets 
-      <| getOrFail i <| getOrFail j tmap
+      <| getOrElse emptyTile i <| getOrElse Array.empty j tmap
 
     drawRowOfTilesFromArray : Int -> [Form]
     drawRowOfTilesFromArray i = map (selectAndDrawTile i) rangeY

@@ -8,11 +8,12 @@ import Natureza.Const (..)
   -- Typedefs
 type Tile = { src : String }
 type Map = Array (Array Tile)
+data MapUpdate = Restart Map | NoUpdate | Load Int
 
 -- Map and screen consts
-mapLen : Int
 mapLen = 256
 
+calcSizeX : Int -> Int
 calcSizeX x = div (x - menuWidth) imgSize
 
 viewportDims : Signal (Int, Int)
@@ -27,24 +28,27 @@ mapSize : Int
 mapSize = mapLen*imgSize
 
 -- Tiles
-sandTile = "http://mysterymachine.github.io/images/sand0d0d2.gif"
-grassTile = "http://mysterymachine.github.io/images/grass0d0d2.gif"
-groundTile = "http://mysterymachine.github.io/images/ground0d0d2.gif"
-stoneTile = "http://mysterymachine.github.io/images/stone0d0d2.gif"
-treeTile = "http://mysterymachine.github.io/images/tree0d0d2.gif"
-selection = "http://mysterymachine.github.io/images/selection0d0d2.gif"
+sandTileImg = "http://mysterymachine.github.io/images/sand0d0d2.gif"
+grassTileImg = "http://mysterymachine.github.io/images/grass0d0d2.gif"
+groundTileImg = "http://mysterymachine.github.io/images/ground0d0d2.gif"
+stoneTileImg = "http://mysterymachine.github.io/images/stone0d0d2.gif"
+treeTileImg = "http://mysterymachine.github.io/images/tree0d0d2.gif"
+selectionImg = "http://mysterymachine.github.io/images/selection0d0d2.gif"
 
 -- Constructors
   -- Tiles
 emptyTile : Tile
-emptyTile = { src = sandTile }
+emptyTile = { src = stoneTileImg }
+
+sandTile : Tile
+sandTile = { src = sandTileImg }
 
 selectionTile : Tile
-selectionTile = { src = selection }
+selectionTile = { src = selectionImg }
 
   -- Maps
 initialMap : Map
-initialMap = repeat mapLen (repeat mapLen emptyTile)
+initialMap = repeat mapLen (repeat mapLen sandTile)
 
 -- Functions
   -- Constant helpers

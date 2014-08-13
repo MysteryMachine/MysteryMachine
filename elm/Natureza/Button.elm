@@ -5,18 +5,23 @@ import Text (..)
 import Natureza.Const (..)
 import Signal (..)
 import Window as Window
+import Graphics.Input (..)
 
-natBtn : String -> Signal Element
-natBtn txt = 
-  let 
+natBtn : Handle a -> a -> String -> Signal Element
+natBtn hndl init txt = 
+  let
+    winX : Signal Int 
     winX = (\(n, m) -> n) <~ Window.dimensions
-    ret : Int -> Element
-    ret x = Elem.color btnBorder 
+    ret : Int -> Color -> Element
+    ret x clr = Elem.color btnBorder 
       <| container (btnWidth x) btnHeight middle
-      <| Elem.color btnColor
+      <| Elem.color clr
       <| container (btnInnerW x) btnInnerH middle 
       <| centered
       <| color textColor <| bold
       <| toText txt
-  in ret <~ winX
+    makeBtn : Int -> Element
+    makeBtn x = customButton hndl init 
+      (ret x btnColor) (ret x btnHoverColor) (ret x btnDownColor)
+  in makeBtn <~ winX
 
