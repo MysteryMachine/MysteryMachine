@@ -41,7 +41,7 @@ mouseOnTile =
 updateMap : MapUpdate -> Map -> Map
 updateMap update map = 
   case update of 
-    Restart newMap -> log "newMap" newMap
+    Restart newMap -> newMap
     _ -> map 
 
 -- Views
