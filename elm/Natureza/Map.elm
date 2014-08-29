@@ -4,6 +4,7 @@ import Array (..)
 import List (foldl, map, (++))
 import Graphics.Collage (Form, collage, toForm, move)
 import Natureza.Map.Helpers (..)
+import Natureza.Map.Gen (..)
 import Mouse as Mouse
 import Time (fps)
 import Graphics.Element (..)
@@ -41,7 +42,7 @@ mouseOnTile =
 updateMap : MapUpdate -> Map -> Map
 updateMap update map = 
   case update of 
-    Restart newMap -> newMap
+    Restart newMap -> floodFill newMap (\n -> n == sandTile) (\n -> sandTile) (0, 0) 
     _ -> map 
 
 -- Views

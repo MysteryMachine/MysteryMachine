@@ -48,7 +48,7 @@ selectionTile = { src = selectionImg }
 
   -- Maps
 initialMap : Map
-initialMap = repeat mapLen (repeat mapLen sandTile)
+initialMap = repeat mapLen (repeat mapLen emptyTile)
 
 -- Functions
   -- Constant helpers
