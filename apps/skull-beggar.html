@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="/css/colors.min.css">
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/skull-beggar.css">
+		<title> SKULL BEGGAR </title>
+	</head>
+	<body class="bg-black white skull-beggar">
+		<div class="container-fluid skull-beggar">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="bottom-1">
+						<img class="center-block" src="/images/skull-beggar/skull-beggar.png" alt="The Skull Beggar Logo!"></img>
+					</div>
+					<h4 class="text-center">
+						<img class="money" src="{{cashIcon}}" alt="money photo"></img>
+						{{cash}} 
+					</h4>
+					<hr class="border--silver"/>
+					<div>
+						<div></div>
+						<input type="text" class="form-control" placeholder="Search by name..."/>
+					</div>
+					<div class="scroll">
+						<div class="enemy-row" ng-repeat="enemy in enemies">
+							<span>
+								<img class="enemy" src="{{enemy.image_url}}" placeholder="{{enemy.name}}"></img>
+							</span>
+							<span>
+								<img class="money" src="/images/skull-beggar/Penny.png" placeholder="bet penny" ng-click="betPenny()"></img>
+							</span>
+							<span>
+								<img class="money" ng-if="cash >= 5" src="/images/skull-beggar/Nickel.png" placeholder="bet nickel" ng-click="betNickel()"></img>
+							</span>
+							<span>
+								<img class="money" ng-if="cash >= 10" src="/images/skull-beggar/Dime2.png" placeholder="bet dime" ng-click="betDime()"></img>
+							</span>
+							<span>
+								<img class="money" src="/images/skull-beggar/A_Dollar_Icon.png" placeholder="bet all" ng-click="betAll()"></img>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-10">
+					
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="/js/angular.min.js"></script>
+		<script type="text/javascript" src="/js/angular-route.min.js"></script>
+		<script type="text/javascript" src="/js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+		<script type="text/javascript" src="/js/skull-beggar.js"></script>
+	</body>
+</html>
