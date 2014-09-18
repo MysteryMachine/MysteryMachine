@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="/css/colors.min.css">
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/motw.css">
+		<title> MONSTER OF THE WEEK </title>
+	</head>
+	<body class="bg-black white text-center" ng-app="monsterOfTheWeek">
+		<h1> MONSTER OF THE WEEK </h1>
+		<div ng-controller="MonsterOfTheWeekController" class="vcenter">
+			<h4 class="bottom-40"> {{thisWeeksMonster}} </h4>
+			<a href="#" ng-click="newMonster()" class="white btn btn-spooky"> NEXT WEEK </a>
+		</div>
+		</div>
+		<script type="text/javascript" src="/js/angular.min.js"></script>
+		<script type="text/javascript" src="/js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+		<script type="text/javascript" src="/js/motw.js"></script>
+	</body>
+</html>
