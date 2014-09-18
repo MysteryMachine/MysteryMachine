@@ -17,7 +17,6 @@ app.constant("SpookyGrammar", {
       count+=1;
       angular.forEach(productions, function(production, _){
         if(!production.t){
-          console.log(production.v)
           var i = Math.floor(this.productionSet[production.v].length*Math.random());
           evaluations = evaluations.concat(this.productionSet[production.v][i]);
         }
@@ -64,7 +63,7 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"Skinner"}],
       [{t:true, v:"Smoking Man"}],
       [{t:true, v:"Deep-Throat"}],
-      [{t:true, v:"Dwayne Barry"}],,
+      [{t:true, v:"Dwayne Barry"}],
       [{t:true, v:"Quequeg"}]
     ],
     
@@ -213,7 +212,7 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"possibly actually just a normal"}],
       [{t:true, v:"obviously not your normal"}],
       [{t:true, v:"sulphur smelling"}],
-      [{t:true, v:"terrified"}],
+      [{t:true, v:"terrifying"}],
       [{t:true, v:"dull"}]
     ], 
     
