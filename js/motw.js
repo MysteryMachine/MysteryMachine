@@ -135,9 +135,9 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"has absurd theories about a"},
        {t:false, v:"spookyNoun"},
        {t:true, v:"that somehow turn out to be right"}],
-      [{t:true, v:"gains new water filled furniture from a"},
+      [{t:true, v:"gains new water filled furniture from"},
         {t:false, v:"mainCharacter"},
-        {t:true, v:"after saving them from a"},
+        {t:true, v:"after saving that person from a"},
         {t:false, v:"spookyAdjective"},
         {t:false, v:"spookyNoun"}]
     ],
@@ -253,7 +253,7 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"who turns out to have been fathered by Mulder"}],
       [{t:true, v:"who has an evil tattoo of"}, {t:false, v:"thing"}],
       [{t:true, v:"who is aware of all that shit Scully and Mulder have going on"}],
-      [{t:true, v:"who gets murdered later on by"}, {t:false, v:"spookyNoun"}],
+      [{t:true, v:"who gets murdered later on by a"}, {t:false, v:"spookyNoun"}],
       [{t:true, v:"who is later shown to have been cloned in a lab in"}, {t:false, v:"spookyLocation"}],
       [{t:true, v:"who is actually a reincarnation of Scully's sister"}],
       [{t:true, v:"who was secretly going through Mulders tapes and was reasonably disgusted"}],
@@ -361,17 +361,17 @@ app.constant("SpookyGrammar", {
     ],
     
     locationTwist:[
-      [{t:true, v:"except everyone is a"}, {t:false, v:"spookyNoun"}],
+      [{t:true, v:"where everyone is a"}, {t:false, v:"spookyNoun"}],
       [{t:true, v:"which is later shown to only exist in the mind of"},
         {t:false, v:"mainCharacter"}],
       [{t:true, v:"which turns out to be just an alien spaceship"}],
       [{t:true, v:"which turns out to be the testing site for a government conspiracy"}],
       [{t:true, v:"which is later razed to the ground by the government"}],
       [{t:true, v:"which is a bad cover for"}],
-      [{t:true, v:"except its just a random place in Vancouver"}],
+      [{t:true, v:"--except its just a random place in Vancouver--"}],
       [{t:true, v:"which turns out to be Mulder's motherland"}],
       [{t:true, v:"--the place Skinner lost his virginity in--"}],
-      [{t:true, v:"except all the televisions there broadcast mind control signals"}]
+      [{t:true, v:"where all the televisions there broadcast mind control signals"}]
     ],
     
     conspiracy: [
