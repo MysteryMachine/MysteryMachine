@@ -64,7 +64,10 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"Smoking Man"}],
       [{t:true, v:"Deep-Throat"}],
       [{t:true, v:"Dwayne Barry"}],
-      [{t:true, v:"Quequeg"}]
+      [{t:true, v:"Mr. X"}],
+      [{t:true, v:"Krycek"}],
+      [{t:true, v:"Quequeg"}],
+      [{t:true, v:"a Lone Gunmen"}]
     ],
     
     subject: [
@@ -91,7 +94,36 @@ app.constant("SpookyGrammar", {
     ],
     
     investigatorAction: [
-      [{t:true, v:"investigates a"},
+      [{t:true, v:"investigates"},
+        {t:false, v:"locationAdjective"},
+        {t:false, v:"location"},
+        {t:false, v:"locationTwist"}],
+        
+      [{t:true, v:"is too spooked by"},
+        {t:false, v:"spookyAdjective"}, 
+        {t:false, v:"spookyNoun"},
+        {t:false, v:"spookyTwist"},
+        {t:false, v:"spookyAction"}],
+        
+      [{t:true, v:"engages in a direct fist fight"},
+        {t:false, v:"spookyAdjective"}, 
+        {t:false, v:"spookyNoun"},
+        {t:false, v:"spookyTwist"},
+        {t:false, v:"spookyAction"}]
+      
+      [{t:true, v:"must negotiate, against all odds with"},
+        {t:false, v:"spookyAdjective"}, 
+        {t:false, v:"spookyNoun"},
+        {t:false, v:"spookyTwist"},
+        {t:false, v:"spookyAction"}],
+        
+      [{t:true, v:"is abducted by"},
+        {t:false, v:"spookyAdjective"}, 
+        {t:false, v:"spookyNoun"},
+        {t:false, v:"spookyTwist"},
+        {t:false, v:"spookyAction"}],
+      
+      [{t:true, v:"gets trapped in"},
         {t:false, v:"locationAdjective"},
         {t:false, v:"location"},
         {t:false, v:"locationTwist"}]
@@ -120,7 +152,9 @@ app.constant("SpookyGrammar", {
         {t:false, v:"spookyTwist"}],
       [{t:true, v:"is doubtful about absurd theories about a"},
        {t:false, v:"spookyNoun"},
-       {t:true, v:"and nothing conclusive is really proven"}]
+       {t:true, v:"and nothing conclusive is really proven"}],
+      [{t: true, v:"don't do shit all day"}],
+      [{t: true, v:"walks into Mulders office to catch him watching porn of"}, {t:false, v:"thing"}]
     ],
     
     investigatorActionBoth: [
@@ -138,7 +172,16 @@ app.constant("SpookyGrammar", {
         {t:false, v:"spookyTwist"}],
       [{t: true, v:"almost age to death due to a"},
         {t:false, v:"spookyAdjective"}, 
-        {t:false, v:"spookyNoun"}]
+        {t:false, v:"spookyNoun"}],
+      [{t: true, v:"must recount their version of their encounter with"},
+        {t:false, v:"spookyAdjective"}, 
+        {t:false, v:"spookyNoun"},
+        {t:true, v:"to Skinner"}],
+      [{t:true, v:"are consultants in a movie about"},
+        {t:false, v:"spookyAdjective"}, 
+        {t:false, v:"spookyNoun"}],
+      [{t:true, v:"are shown to be simultaneously taking a bubble bath with"}, 
+        {t:false, v:"mainCharacter"}]
     ],
     
     spookyAdjective: [
@@ -150,7 +193,28 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"invisible"}],
       [{t:true, v:"mind-fucking"}],
       [{t:true, v:"WASP conservative"}],
-      [{t:true, v:"literally unimaginable"}]
+      [{t:true, v:"literally unimaginable"}],
+      [{t:true, v:"majin"}],
+      [{t:true, v:"black oil infetected"}],
+      [{t:true, v:"nega-director"}],
+      [{t:true, v:"extra-dimensional"}],
+      [{t:true, v:"alien"}],
+      [{t:true, v:"frozen"}],
+      [{t:true, v:"infectious"}],
+      [{t:true, v:"malignant"}],
+      [{t:true, v:"sinister"}],
+      [{t:true, v:"radioactive"}],
+      [{t:true, v:"deadly"}],
+      [{t:true, v:"mundane"}],
+      [{t:true, v:"insidious"}],
+      [{t:true, v:"comical"}],
+      [{t:true, v:"vengeful"}],
+      [{t:true, v:"mysterious"}],
+      [{t:true, v:"ancient"}],
+      [{t:true, v:"secret"}],
+      [{t:true, v:"clandestine"}],
+      [{t:true, v:"shadowy"}],
+      [{t:true, v:"baseball loving"}]
     ],
     
     spookyNoun: [
@@ -158,12 +222,24 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"werewolf"}],
       [{t:true, v:"ghost"}],
       [{t:true, v:"alien-human hybrid"}],
-      [{t:true, v:"bee swarm"}],
+      [{t:true, v:"bees"}],
       [{t:true, v:"cat"}],
-      [{t:true, v:"child"}],
       [{t:true, v:"spy"}],
       [{t:true, v:"double-agent"}],
-      [{t:true, v:"a doppleganger of"}, {t:false, v:"mainCharacter"}]
+      [{t:true, v:"gender swapping amish"}],
+      [{t:true, v:"fluke man"}],
+      [{t:true, v:"sentient terratoma"}],
+      [{t:true, v:"a sentient computer program"}],
+      [{t:true, v:"mushrooms"}],
+      [{t:true, v:"organ betting gang"}],
+      [{t:true, v:"fire vampire"}],
+      [{t:true, v:"shadow"}],
+      [{t:true, v:"nightmare beast"}],
+      [{t:true, v:"golem"}],
+      [{t:true, v:"time traveler"}],
+      [{t:true, v:"doppleganger of"}, {t:false, v:"mainCharacter"}],
+      [{t:true, v:"a dream where they must relive the events of the \"First Person Shooter\" episode"}],
+      [{t:true, v:"incestuous Pennsylvanians"}]
     ],
     
     spookyTwist: [
@@ -177,11 +253,28 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"who turns out to have been fathered by Mulder"}],
       [{t:true, v:"who has an evil tattoo of"}, {t:false, v:"thing"}],
       [{t:true, v:"who is aware of all that shit Scully and Mulder have going on"}],
-      [{t:true, v:""}]
+      [{t:true, v:"who gets murdered later on by"}, {t:false, v:"spookyNoun"}],
+      [{t:true, v:"who is later shown to have been cloned in a lab in"}, {t:false, v:"spookyLocation"}],
+      [{t:true, v:"who is actually a reincarnation of Scully's sister"}],
+      [{t:true, v:"who was secretly going through Mulders tapes and was reasonably disgusted"}],
+      [{t:true, v:"who popped Mulder's new water filled furniture"}],
+      [{t:true, v:"who was a lot more"}, {t:false, v:"spookyAdjective"}, {t:true, v:"than you first would think"}],
+      [{t:true, v:"who"},{t:false, v:"mainCharacter"},{t:true, v:"will never speak of again"}],
+      [{t:true, v:"who was actually totally normal all along"}],
+      [{t:true, v:"who is played by Bryan Cranston"}]
     ],
     
     spookyAction: [
       [{t:true, v:"spooks"}, {t:false, v:"mainCharacter"}],
+      [{t:true, v:"pukes on"}, {t:false, v:"mainCharacter"}],
+      [{t:true, v:"eats and then pukes out"}, {t:false, v:"mainCharacter"}],
+      [{t:true, v:"is drowned by"}, {t:false, v:"mainCharacter"}],
+      [{t:true, v:"is shot at by"}, {t:false, v:"mainCharacter"}],
+      [{t:true, v:"abducts"}, {t:false, v:"mainCharacter"}],
+      [{t:true, v:"hires"}, {t:false, v:"mainCharacter"}, {t:true, v:"to murder"}, {t:false, v:"mainCharacter"}],
+      [{t:true, v:"puts a hit on"}, {t:false, v:"mainCharacter"}],
+      [{t:true, v:"convinces"}, {t:false, v:"mainCharacter"}, {t:true, v:"to go on a boat that is obviously a trap"}],
+      [{t:true, v:"teaches the meaning of fear to"}, {t:false, v:"mainCharacter"}],
       [{t:true, v:"blows the mind of"}, {t:false, v:"mainCharacter"}],
       [{t:true, v:"falls in love with"}, {t:false, v:"mainCharacter"}],
       [{t:true, v:"captures"}, {t:false, v:"mainCharacter"}],
@@ -213,7 +306,20 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"obviously not your normal"}],
       [{t:true, v:"sulphur smelling"}],
       [{t:true, v:"terrifying"}],
-      [{t:true, v:"dull"}]
+      [{t:true, v:"dull"}],
+      [{t:true, v:"frozen"}],
+      [{t:true, v:"infectious"}],
+      [{t:true, v:"malignant"}],
+      [{t:true, v:"sinister"}],
+      [{t:true, v:"radioactive"}],
+      [{t:true, v:"deadly"}],
+      [{t:true, v:"mundane"}],
+      [{t:true, v:"insidious"}],
+      [{t:true, v:"comical"}],
+      [{t:true, v:"vengeful"}],
+      [{t:true, v:"mysterious"}],
+      [{t:true, v:"ancient"}],
+      [{t:true, v:"secret"}]
     ], 
     
     location:[
@@ -222,8 +328,20 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"government building"}],
       [{t:true, v:"FBI office party"}],
       [{t:true, v:"agent's house"}],
-      [{t:true, v:"satanic ritual abuse cult"}],
+      [{t:true, v:"satanic ritual abuse cult's homebase"}],
       [{t:true, v:"place strangely devoid of any sort of"}, {t:false, v:"thing"}],
+      [{t:true, v:"the secret location of"}, {t:false, v:"spookyNoun"}],
+      [{t:true, v:"place where"}, {t:false, v:"mainCharacter"}, {t:true, v:"is being held hostage"}],
+      [{t:true, v:"spaceship"}],
+      [{t:true, v:"a place that looks like a spaceship, but is actually the secret location for"}, {t:false, v:"conspiracy"}],
+      [{t:true, v:"Bermuda triangle dream sequence"}],
+      [{t:true, v:"weird Canadian location"}],
+      [{t:true, v:"clone farm"}],
+      [{t:true, v:"Florida (actually Vancouver)"}],
+      [{t:true, v:"the set of Breaking Bad"}],
+      [{t:true, v:"a military base"}],
+      [{t:true, v:"high tech conference full of nerds"}]
+      
     ], 
     
     locationAction: [
@@ -232,16 +350,28 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"is an obvious cover for"},
         {t:false, v:"conspiracy"}],
       [{t:true, v:"has been engineered specifically to hide"},
-        {t:false, v:"conspiracy"}]
+        {t:false, v:"conspiracy"}],
+      [{t:true, v:"is a thinly veiled Twin Peaks reference, which explains why you kinda don't get this episode"}],
+      [{t:true, v:"is the place Scully discovers that her name was Bambi"}],
+      [{t:true, v:"is the home base for"}, {t:false, v:"spookyNoun"}],
+      [{t:true, v:"is full of dead bodies that require slow, boring autopsies that prevent Scully from having pizza"}],
+      [{t:true, v:"is full of seeds, which Mulder throws out because he knows"}, {t:false, v:"spookyNoun"}, {t:true, v:"must pick them up when dropped"}],
+      [{t:true, v:"where Mulder goes to buy sunflower seeds"}],
+      [{t:true, v:"is smelly because of"}, {t:false, v:"spookyNoun"}]
     ],
     
     locationTwist:[
       [{t:true, v:"except everyone is a"}, {t:false, v:"spookyNoun"}],
       [{t:true, v:"which is later shown to only exist in the mind of"},
         {t:false, v:"mainCharacter"}],
-      [{t:true, v:""}],
-      [{t:true, v:""}],
-      [{t:true, v:""}]
+      [{t:true, v:"which turns out to be just an alien spaceship"}],
+      [{t:true, v:"which turns out to be the testing site for a government conspiracy"}],
+      [{t:true, v:"which is later razed to the ground by the government"}],
+      [{t:true, v:"which is a bad cover for"}],
+      [{t:true, v:"except its just a random place in Vancouver"}],
+      [{t:true, v:"which turns out to be Mulder's motherland"}],
+      [{t:true, v:"--the place Skinner lost his virginity in--"}],
+      [{t:true, v:"except all the televisions there broadcast mind control signals"}]
     ],
     
     conspiracy: [
@@ -252,7 +382,13 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"the undermining the proliferation of"},
         {t:false, v:"thing"}],
       [{t:true, v:"the removal of heat from the real conspiracy"}],
-      [{t:true, v:"Mulder and Scully's love life"}]
+      [{t:true, v:"Mulder and Scully's love life"}],
+      [{t:true, v:"the hiding the existence of"}, {t:false, v:"spookyNoun"}],
+      [{t:true, v:"the fact that her name was Bambi"}],
+      [{t:true, v:"the fact that this show is basically Duchovny and Anderson providing us with fanservice"}],
+      [{t:true, v:"the fact Mulder's porn tapes are actually just tapes of the show"}],
+      [{t:true, v:"the fact that Scully's bitchface was actually engineered by the government"}],
+      [{t:true, v:"the fact that"}, {t:false, v:"mainCharacter"}, {t:true, v:"is actually a clone"}]
     ],
     
     alienTech: [
