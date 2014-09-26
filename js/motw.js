@@ -166,7 +166,7 @@ app.constant("SpookyGrammar", {
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
         {t:false, v:"spookyTwist"}],
-      [{t:true, v:"must postpone sexual tension, yet again, over a"},
+      [{t:true, v:"have sexual tension interrupted by a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
         {t:false, v:"spookyTwist"}],
