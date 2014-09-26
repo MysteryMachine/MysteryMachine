@@ -94,7 +94,7 @@ app.constant("SpookyGrammar", {
     ],
     
     investigatorAction: [
-      [{t:true, v:"investigates"},
+      [{t:true, v:"investigates a"},
         {t:false, v:"locationAdjective"},
         {t:false, v:"location"},
         {t:false, v:"locationTwist"}],
