@@ -63,7 +63,7 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"Skinner"}],
       [{t:true, v:"Smoking Man"}],
       [{t:true, v:"Deep-Throat"}],
-      [{t:true, v:"Dwayne Barry"}],
+      [{t:true, v:"Duane Barry"}],
       [{t:true, v:"Mr. X"}],
       [{t:true, v:"Krycek"}],
       [{t:true, v:"Quequeg"}],
@@ -99,31 +99,31 @@ app.constant("SpookyGrammar", {
         {t:false, v:"location"},
         {t:false, v:"locationTwist"}],
         
-      [{t:true, v:"is too spooked by"},
+      [{t:true, v:"is too spooked by a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
         {t:false, v:"spookyTwist"},
         {t:false, v:"spookyAction"}],
         
-      [{t:true, v:"engages in a direct fist fight"},
+      [{t:true, v:"engages in a direct fist fight with a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
         {t:false, v:"spookyTwist"},
         {t:false, v:"spookyAction"}]
       
-      [{t:true, v:"must negotiate, against all odds with"},
+      [{t:true, v:"must negotiate, against all odds with a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
         {t:false, v:"spookyTwist"},
         {t:false, v:"spookyAction"}],
         
-      [{t:true, v:"is abducted by"},
+      [{t:true, v:"is abducted by a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
         {t:false, v:"spookyTwist"},
         {t:false, v:"spookyAction"}],
       
-      [{t:true, v:"gets trapped in"},
+      [{t:true, v:"gets trapped in a"},
         {t:false, v:"locationAdjective"},
         {t:false, v:"location"},
         {t:false, v:"locationTwist"}]
@@ -135,9 +135,9 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"has absurd theories about a"},
        {t:false, v:"spookyNoun"},
        {t:true, v:"that somehow turn out to be right"}],
-      [{t:true, v:"gains new water filled furniture from"},
+      [{t:true, v:"gains new water filled furniture from a"},
         {t:false, v:"mainCharacter"},
-        {t:true, v:"after saving them from"},
+        {t:true, v:"after saving them from a"},
         {t:false, v:"spookyAdjective"},
         {t:false, v:"spookyNoun"}]
     ],
@@ -154,7 +154,7 @@ app.constant("SpookyGrammar", {
        {t:false, v:"spookyNoun"},
        {t:true, v:"and nothing conclusive is really proven"}],
       [{t: true, v:"don't do shit all day"}],
-      [{t: true, v:"walks into Mulders office to catch him watching porn of"}, {t:false, v:"thing"}]
+      [{t: true, v:"walks into Mulders office to catch him watching porn of a"}, {t:false, v:"spookyNoun"}]
     ],
     
     investigatorActionBoth: [
@@ -173,14 +173,14 @@ app.constant("SpookyGrammar", {
       [{t: true, v:"almost age to death due to a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"}],
-      [{t: true, v:"must recount their version of their encounter with"},
+      [{t: true, v:"must recount their versions of their encounter with a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
         {t:true, v:"to Skinner"}],
-      [{t:true, v:"are consultants in a movie about"},
+      [{t:true, v:"are consultants on a movie featuring a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"}],
-      [{t:true, v:"are shown to be simultaneously taking a bubble bath with"}, 
+      [{t:true, v:"are shown to be simultaneously taking a bubble bath with a"}, 
         {t:false, v:"mainCharacter"}]
     ],
     
@@ -222,15 +222,15 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"werewolf"}],
       [{t:true, v:"ghost"}],
       [{t:true, v:"alien-human hybrid"}],
-      [{t:true, v:"bees"}],
+      [{t:true, v:"bee swarm"}],
       [{t:true, v:"cat"}],
       [{t:true, v:"spy"}],
       [{t:true, v:"double-agent"}],
       [{t:true, v:"gender swapping amish"}],
       [{t:true, v:"fluke man"}],
       [{t:true, v:"sentient terratoma"}],
-      [{t:true, v:"a sentient computer program"}],
-      [{t:true, v:"mushrooms"}],
+      [{t:true, v:"sentient computer program"}],
+      [{t:true, v:"mushroom"}],
       [{t:true, v:"organ betting gang"}],
       [{t:true, v:"fire vampire"}],
       [{t:true, v:"shadow"}],
@@ -238,7 +238,7 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"golem"}],
       [{t:true, v:"time traveler"}],
       [{t:true, v:"doppleganger of"}, {t:false, v:"mainCharacter"}],
-      [{t:true, v:"a dream where they must relive the events of the \"First Person Shooter\" episode"}],
+      [{t:true, v:"dream where they must relive the events of the \"First Person Shooter\" episode"}],
       [{t:true, v:"incestuous Pennsylvanians"}]
     ],
     
@@ -330,16 +330,16 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"agent's house"}],
       [{t:true, v:"satanic ritual abuse cult's homebase"}],
       [{t:true, v:"place strangely devoid of any sort of"}, {t:false, v:"thing"}],
-      [{t:true, v:"the secret location of"}, {t:false, v:"spookyNoun"}],
+      [{t:true, v:"secret location of"}, {t:false, v:"spookyNoun"}],
       [{t:true, v:"place where"}, {t:false, v:"mainCharacter"}, {t:true, v:"is being held hostage"}],
       [{t:true, v:"spaceship"}],
-      [{t:true, v:"a place that looks like a spaceship, but is actually the secret location for"}, {t:false, v:"conspiracy"}],
+      [{t:true, v:"place that looks like a spaceship, but is actually the secret location for"}, {t:false, v:"conspiracy"}],
       [{t:true, v:"Bermuda triangle dream sequence"}],
       [{t:true, v:"weird Canadian location"}],
       [{t:true, v:"clone farm"}],
       [{t:true, v:"Florida (actually Vancouver)"}],
-      [{t:true, v:"the set of Breaking Bad"}],
-      [{t:true, v:"a military base"}],
+      [{t:true, v:"set of Breaking Bad"}],
+      [{t:true, v:"military base"}],
       [{t:true, v:"high tech conference full of nerds"}]
       
     ], 
@@ -353,11 +353,11 @@ app.constant("SpookyGrammar", {
         {t:false, v:"conspiracy"}],
       [{t:true, v:"is a thinly veiled Twin Peaks reference, which explains why you kinda don't get this episode"}],
       [{t:true, v:"is the place Scully discovers that her name was Bambi"}],
-      [{t:true, v:"is the home base for"}, {t:false, v:"spookyNoun"}],
+      [{t:true, v:"is the home base for a"}, {t:false, v:"spookyNoun"}],
       [{t:true, v:"is full of dead bodies that require slow, boring autopsies that prevent Scully from having pizza"}],
       [{t:true, v:"is full of seeds, which Mulder throws out because he knows"}, {t:false, v:"spookyNoun"}, {t:true, v:"must pick them up when dropped"}],
-      [{t:true, v:"where Mulder goes to buy sunflower seeds"}],
-      [{t:true, v:"is smelly because of"}, {t:false, v:"spookyNoun"}]
+      [{t:true, v:"is where Mulder goes to buy sunflower seeds"}],
+      [{t:true, v:"is smelly because of a"}, {t:false, v:"spookyNoun"}]
     ],
     
     locationTwist:[
