@@ -131,7 +131,7 @@ app.constant("SpookyGrammar", {
     
     investigatorActionMulder: [
       [{t:true, v:"watches porn of a"},
-       {t:false, v:"thing"}],
+       {t:false, v:"spookyNoun"}],
       [{t:true, v:"has absurd theories about a"},
        {t:false, v:"spookyNoun"},
        {t:true, v:"that somehow turn out to be right"}],
@@ -173,14 +173,14 @@ app.constant("SpookyGrammar", {
       [{t: true, v:"almost age to death due to a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"}],
-      [{t: true, v:"must recount their versions of their encounter with a"},
+      [{t: true, v:"must recount their individual versions of their encounter with a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
         {t:true, v:"to Skinner"}],
       [{t:true, v:"are consultants on a movie featuring a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"}],
-      [{t:true, v:"are shown to be simultaneously taking a bubble bath with a"}, 
+      [{t:true, v:"are shown to be simultaneously taking a bubble bath with"}, 
         {t:false, v:"mainCharacter"}]
     ],
     
