@@ -218,10 +218,10 @@ app.constant("SpookyGrammar", {
     ],
     
     spookyNoun: [
-      [{t:true, v:"alien"}],
+      [{t:true, v:"spooky alien"}],
       [{t:true, v:"werewolf"}],
       [{t:true, v:"ghost"}],
-      [{t:true, v:"alien-human hybrid"}],
+      [{t:true, v:"conspiratorial alien-human hybrid"}],
       [{t:true, v:"bee swarm"}],
       [{t:true, v:"cat"}],
       [{t:true, v:"spy"}],
@@ -231,15 +231,15 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"sentient terratoma"}],
       [{t:true, v:"sentient computer program"}],
       [{t:true, v:"mushroom"}],
-      [{t:true, v:"organ betting gang"}],
+      [{t:true, v:"secret organ betting gang"}],
       [{t:true, v:"fire vampire"}],
       [{t:true, v:"shadow"}],
       [{t:true, v:"nightmare beast"}],
       [{t:true, v:"golem"}],
       [{t:true, v:"time traveler"}],
       [{t:true, v:"doppleganger of"}, {t:false, v:"mainCharacter"}],
-      [{t:true, v:"dream where they must relive the events of the \"First Person Shooter\" episode"}],
-      [{t:true, v:"incestuous Pennsylvanians"}]
+      [{t:true, v:"nightmare monster"}],
+      [{t:true, v:"gross incestuous Pennsylvanian"}]
     ],
     
     spookyTwist: [
@@ -257,11 +257,11 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"who is later shown to have been cloned in a lab in"}, {t:false, v:"spookyLocation"}],
       [{t:true, v:"who is actually a reincarnation of Scully's sister"}],
       [{t:true, v:"who was secretly going through Mulders tapes and was reasonably disgusted"}],
-      [{t:true, v:"who popped Mulder's new water filled furniture"}],
+      [{t:true, v:"who popped some new water filled furniture"}],
       [{t:true, v:"who was a lot more"}, {t:false, v:"spookyAdjective"}, {t:true, v:"than you first would think"}],
       [{t:true, v:"who"},{t:false, v:"mainCharacter"},{t:true, v:"will never speak of again"}],
       [{t:true, v:"who was actually totally normal all along"}],
-      [{t:true, v:"who is played by Bryan Cranston"}]
+      [{t:true, v:"--who is played by Bryan Cranston--"}]
     ],
     
     spookyAction: [
@@ -327,7 +327,7 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"den of sin"}],
       [{t:true, v:"government building"}],
       [{t:true, v:"FBI office party"}],
-      [{t:true, v:"agent's house"}],
+      [{t:true, v:"secret agent's house"}],
       [{t:true, v:"satanic ritual abuse cult's homebase"}],
       [{t:true, v:"place strangely devoid of any sort of"}, {t:false, v:"thing"}],
       [{t:true, v:"secret location of"}, {t:false, v:"spookyNoun"}],
