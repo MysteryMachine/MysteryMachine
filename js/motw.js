@@ -126,8 +126,7 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"is too spooked by a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
-        {t:false, v:"spookyTwist"},
-        {t:false, v:"spookyAction"}],
+        {t:false, v:"spookyTwist"}],
         
       [{t:true, v:"engages in a direct fist fight with a"},
         {t:false, v:"spookyAdjective"}, 
