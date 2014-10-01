@@ -131,20 +131,17 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"engages in a direct fist fight with a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
-        {t:false, v:"spookyTwist"},
-        {t:false, v:"spookyAction"}]
+        {t:false, v:"spookyTwist"}]
       
       [{t:true, v:"must negotiate, against all odds with a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
-        {t:false, v:"spookyTwist"},
-        {t:false, v:"spookyAction"}],
+        {t:false, v:"spookyTwist"}],
         
       [{t:true, v:"is abducted by a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
-        {t:false, v:"spookyTwist"},
-        {t:false, v:"spookyAction"}],
+        {t:false, v:"spookyTwist"}],
       
       [{t:true, v:"gets trapped in a"},
         {t:false, v:"locationAdjective"},
