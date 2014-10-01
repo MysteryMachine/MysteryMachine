@@ -53,6 +53,8 @@ app.constant("SpookyGrammar", {
       this.investigatorActionMulder = this.investigatorAction.concat(this.investigatorActionMulder);
       this.investigatorActionScully = this.investigatorAction.concat(this.investigatorActionScully);
       this.thing = this.spookyNoun.concat(this.mainCharacters);
+      this.locationActionConspiracy = this.locationActionConspiracy.concat(this.locationAction);
+      this.locationConspiracy = this.location.concat(this.locationConspiracy);
       
       this.init = false;
     },
@@ -82,6 +84,13 @@ app.constant("SpookyGrammar", {
         {t:false, v:"spookyNoun"},
         {t:false, v:"spookyAction"}],
       [{t:true, v: "A"},
+        {t:false, v:"spookyNoun"},
+        {t:false, v:"spookyAction"}],
+      [{t:true, v: "A"},
+        {t:false, v:"spookyNoun"},
+        {t:false, v:"spookyTwist"},
+        {t:false, v:"spookyAction"}],
+      [{t:true, v: "A"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
         {t:false, v:"spookyTwist"},
@@ -90,6 +99,17 @@ app.constant("SpookyGrammar", {
         {t:false, v:"locationAdjective"},
         {t:false, v:"location"},
         {t:false, v:"locationTwist"},
+        {t:false, v:"locationAction"}],
+      [{t:true, v:"A"},
+        {t:false, v:"locationAdjective"},
+        {t:false, v:"location"},
+        {t:false, v:"locationActionConspiracy"}],
+      [{t:true, v:"A"},
+        {t:false, v:"locationAdjective"},
+        {t:false, v:"locationConspiracy"},
+        {t:false, v:"locationAction"}],
+      [{t:true, v:"A"},
+        {t:false, v:"locationConspiracy"},
         {t:false, v:"locationAction"}]
     ],
     
@@ -98,6 +118,10 @@ app.constant("SpookyGrammar", {
         {t:false, v:"locationAdjective"},
         {t:false, v:"location"},
         {t:false, v:"locationTwist"}],
+        
+      [{t:true, v:"investigates a"},
+        {t:false, v:"locationAdjective"},
+        {t:false, v:"locationConspiracy"}],
         
       [{t:true, v:"is too spooked by a"},
         {t:false, v:"spookyAdjective"}, 
@@ -126,7 +150,11 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"gets trapped in a"},
         {t:false, v:"locationAdjective"},
         {t:false, v:"location"},
-        {t:false, v:"locationTwist"}]
+        {t:false, v:"locationTwist"}],
+        
+      [{t:true, v:"gets trapped in a"},
+        {t:false, v:"locationAdjective"},
+        {t:false, v:"locationConspiracy"}]
     ],
     
     investigatorActionMulder: [
@@ -153,7 +181,7 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"is doubtful about absurd theories about a"},
        {t:false, v:"spookyNoun"},
        {t:true, v:"and nothing conclusive is really proven"}],
-      [{t: true, v:"don't do shit all day"}],
+      [{t: true, v:"don't do shit all day while Mulder"}, {t:false, v:"investigatorActionMulder"}],
       [{t: true, v:"walks into Mulders office to catch him watching porn of a"}, {t:false, v:"spookyNoun"}]
     ],
     
@@ -161,7 +189,10 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"investigate a"},
         {t:false, v:"locationAdjective"},
         {t:false, v:"location"},
-        {t:false, v:"locationTwist"}],
+        {t:false, v:"locationTwist"}],  
+      [{t:true, v:"investigate a"},
+        {t:false, v:"locationAdjective"},
+        {t:false, v:"locationConspiracy"}],
       [{t:true, v:"keep calling each other about a"},
         {t:false, v:"spookyAdjective"}, 
         {t:false, v:"spookyNoun"},
@@ -243,25 +274,25 @@ app.constant("SpookyGrammar", {
     ],
     
     spookyTwist: [
-      [{t:true, v:"that used to be Skinner's ex-wife all along,"}],
-      [{t:true, v:"who may or may not have caused 9-11,"}],
-      [{t:true, v:"who was proven to be actually a,"}, {t:false, v:"spookyNoun"}],
-      [{t:true, v:"who is covered in cigarette butts,"}],
-      [{t:true, v:"who is making Scully cheat on Mulder,"}],
-      [{t:true, v:"who is making Mulder cheat on Scully,"}],
-      [{t:true, v:"-- Skinner's specific phobia --"}],
+      [{t:true, v:"that used to be Skinner's ex-wife all along"}],
+      [{t:true, v:"who may or may not have caused 9-11"}],
+      [{t:true, v:"who was proven to be actually a"}, {t:false, v:"spookyNoun"}],
+      [{t:true, v:"who is covered in cigarette butts"}],
+      [{t:true, v:"who is making Scully cheat on Mulder"}],
+      [{t:true, v:"who is making Mulder cheat on Scully"}],
+      [{t:true, v:"-  Skinner's specific phobia  -"}],
       [{t:true, v:"who turns out to have been fathered by Mulder",}],
       [{t:true, v:"who has an evil tattoo of"}, {t:false, v:"thing"}],
-      [{t:true, v:"who is aware of all that shit Scully and Mulder have going on,"}],
+      [{t:true, v:"who is aware of Scully and Mulder's feelings"}],
       [{t:true, v:"who gets murdered later on by a"}, {t:false, v:"spookyNoun"}],
-      [{t:true, v:"who is later shown to have been cloned in a lab in"}, {t:false, v:"spookyLocation"}],
-      [{t:true, v:"who is actually a reincarnation of Scully's sister,"}],
-      [{t:true, v:"who was secretly going through Mulders tapes and was reasonably disgusted,"}],
-      [{t:true, v:"who popped some new water filled furniture,"}],
-      [{t:true, v:"who was a lot more"}, {t:false, v:"spookyAdjective"}, {t:true, v:"than you first would think,"}],
-      [{t:true, v:"who"},{t:false, v:"mainCharacter"},{t:true, v:"will never speak of again,"}],
-      [{t:true, v:"who was actually totally normal all along,"}],
-      [{t:true, v:"--who is played by Bryan Cranston--"}]
+      [{t:true, v:"who is later shown to have been cloned in a lab in"}, {t:false, v:"location"}],
+      [{t:true, v:"who is actually a reincarnation of Scully's sister"}],
+      [{t:true, v:"who was secretly going through Mulders tapes and was reasonably disgusted"}],
+      [{t:true, v:"who popped some new water filled furniture"}],
+      [{t:true, v:"who was a lot more"}, {t:false, v:"spookyAdjective"}, {t:true, v:"than you first would think"}],
+      [{t:true, v:"who"},{t:false, v:"mainCharacter"},{t:true, v:"will never speak of again"}],
+      [{t:true, v:"who was actually totally normal all along"}],
+      [{t:true, v:"- who is played by Bryan Cranston -"}]
     ],
     
     spookyAction: [
@@ -303,7 +334,7 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"spooky"}],
       [{t:true, v:"foggy"}],
       [{t:true, v:"definitely normal"}],
-      [{t:true, v:"clearly not your normal"}],
+      [{t:true, v:"clearly abnormal"}],
       [{t:true, v:"sulphur smelling"}],
       [{t:true, v:"terrifying"}],
       [{t:true, v:"dull"}],
@@ -322,8 +353,12 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"secret"}]
     ], 
     
+    locationConspiracy:[
+      [{t:true, v:"place that looks like a spaceship, but is actually the secret location for"}, {t:false, v:"conspiracy"}]
+    ],
+    
     location:[
-      [{t:true, v:"giant beehive"}]
+      [{t:true, v:"giant beehive"}],
       [{t:true, v:"den of sin"}],
       [{t:true, v:"government building"}],
       [{t:true, v:"FBI office party"}],
@@ -333,7 +368,6 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"secret location of a"}, {t:false, v:"spookyNoun"}],
       [{t:true, v:"place where"}, {t:false, v:"mainCharacter"}, {t:true, v:"is being held hostage"}],
       [{t:true, v:"spaceship"}],
-      [{t:true, v:"place that looks like a spaceship, but is actually the secret location for"}, {t:false, v:"conspiracy"}],
       [{t:true, v:"Bermuda triangle dream sequence"}],
       [{t:true, v:"weird Canadian location"}],
       [{t:true, v:"clone farm"}],
@@ -344,13 +378,16 @@ app.constant("SpookyGrammar", {
       
     ], 
     
-    locationAction: [
+    locationActionConspiracy: [
       [{t:true, v:"becomes the testing ground for"},
         {t:false, v:"conspiracy"}],
       [{t:true, v:"is an obvious cover for"},
         {t:false, v:"conspiracy"}],
       [{t:true, v:"has been engineered specifically to hide"},
-        {t:false, v:"conspiracy"}],
+        {t:false, v:"conspiracy"}]
+    ],
+    
+    locationAction: [
       [{t:true, v:"is a thinly veiled Twin Peaks reference, which explains why you kinda don't get this episode"}],
       [{t:true, v:"is the place Scully discovers that her name was Bambi"}],
       [{t:true, v:"is the home base for a"}, {t:false, v:"spookyNoun"}],
@@ -368,9 +405,9 @@ app.constant("SpookyGrammar", {
       [{t:true, v:"which turns out to be the testing site for a government conspiracy"}],
       [{t:true, v:"which is later razed to the ground by the government"}],
       [{t:true, v:"which is a bad cover for what is really going on,"}],
-      [{t:true, v:"--except its just a random place in Vancouver--"}],
+      [{t:true, v:"- except its just a random place in Vancouver -"}],
       [{t:true, v:"which turns out to be Mulder's motherland"}],
-      [{t:true, v:"--the place Skinner lost his virginity in--"}],
+      [{t:true, v:"- the place Skinner lost his virginity in -"}],
       [{t:true, v:"where all the televisions there broadcast mind control signals"}]
     ],
     
