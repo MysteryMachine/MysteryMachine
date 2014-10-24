@@ -48,7 +48,7 @@ app.service('skullApi', function($resource, $location){
   // If the load passes, just load resource into the scope,
   // otherwise it is a critical failure
   var loadChannel = function(){
-    this.Channel.get({id: $scope.channelId}, 
+    this.Channel.get({id: this.$scope.channelId}, 
       loadChannelPass.bind(this), 
       loadChannelFail.bind(this));
   };
