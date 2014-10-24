@@ -2,6 +2,15 @@ body.skull-beggar{
   padding: 1em;
   font-size: 1.5em;
   line-height: 1.25em;
+  background-color: #5C4033;
+}
+
+div.panel{
+  background-color: #8B7765;
+  border: 0px solid;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
 }
 
 .bottom-1{
@@ -10,4 +19,12 @@ body.skull-beggar{
 
 .bottom-2{
   padding-bottom: 2em;
+}
+
+img.money{
+  height: 34px;
+}
+
+img.enemy{
+  height: 34px;
 }
