@@ -1,30 +1,51 @@
+@font-face{
+  font-family: blocky;
+  src: url(/fonts/Minercraftory.ttf);
+}
+
 body.skull-beggar{
-  padding: 1em;
-  font-size: 1.5em;
-  line-height: 1.25em;
+  font-size: 16px;
+  font-weight: 100;
   background-color: #5C4033;
+  color: #333;
+  font-family: blocky;
+}
+
+a{
+  color: #85144B;
+}
+
+input.skull-input{
+  border-radius: 2px;
 }
 
 div.panel{
   background-color: #8B7765;
   border: 0px solid;
-  border-radius: 20px;
-  padding: 10px;
-  margin: 10px;
+  border-radius: 2px;
+  padding: 12px;
+  margin: 10px -4px 10px -4px;
 }
 
 .bottom-1{
-  padding-bottom: 1em;
+  padding-bottom: 10px;
 }
 
 .bottom-2{
-  padding-bottom: 2em;
+  padding-bottom: 20px;
 }
 
 img.money{
-  height: 34px;
+  margin-left: 8px;
+  margin-top: 10px;
+  width: 34px;
 }
 
 img.enemy{
   height: 34px;
+}
+
+.big-text{
+  font-size: 24px;
+  font-family: blocky;
 }

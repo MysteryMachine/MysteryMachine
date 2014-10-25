@@ -11,47 +11,12 @@
 		
 		<div class="container-fluid skull-beggar" ng-controller="skullController">
 			
-			<div class="row">
-				<div class="col-md-12">
-					<div class="panel">
-						<img class="center-block" src="/images/skull-beggar/skull-beggar.png" alt="The Skull Beggar Logo!"></img>
-					</div>
-				</div>
-			</div>
+			<logo-panel></logo-panel>
+			<activity-panel></activity-panel>
 			
-			<div class="row panel">
-				<div class="col-md-4"></div>
-				<div class="col-md-2">
-					<input type="text" class="form-control" placeholder="Search by name..." ng-model="searchText"/>
-				</div>
-				<div class="col-md-2">
-					<div class="row">
-						<div class="col-md-3">
-							<img class="money" src="/images/skull-beggar/A_Dollar_Icon.png" alt="money photo"></img>
-						</div>
-						<div class="col-md-9">
-							<h4>{{cash()}}</h4>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4"></div>
-			</div>
-			
-			<div class="row" ng-if="betting()">
-				<div class="col-md-4">
-						<div class="enemy-row row panel" ng-repeat="enemy in enemies">
-							<div class="col-xs-3">
-								<img class="enemy" src="{{enemy.imgUrl}}" placeholder="{{enemy.name}}"></img> 
-							</div>
-							<div class="col-xs-6 text-center">
-								{{enemy.name}}
-							</div>
-							<div class="col-xs-3">
-								<button class="btn bg-olive" ng-click="betOn(enemy)"> Bet! </button>
-							</div>
-						</div>
-				</div>
-			</div>
+			<inactive-panel ng-if="inactive()"></inactive-panel>
+			<betting-panel ng-if="betting()"></betting-panel>
+			<waiting-panel ng-if="waiting()"></waiting-panel>
 			
 		</div>
 

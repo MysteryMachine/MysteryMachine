@@ -94,7 +94,7 @@ app.service('skullApi', function($resource, $location){
       'bet': { method: 'POST', url: root + "/channels/:id/bet.json", withCredentials: true }
     }),
     // Does all the initial backend queries
-    loadResources: function($scope){
+    initialize: function($scope){
       this.$scope = $scope;
       
       loadChannelId.call(this);
@@ -106,9 +106,90 @@ app.service('skullApi', function($resource, $location){
   return api;
 });
 
-app.controller('skullController', function($scope, $location, skullApi){
-  skullApi.loadResources($scope);
+app.service('skullHelpers', function(skullApi){
+  var $scope;
+  
+  var channelExistsAndStatus = function(status){
+    return $scope.channel && 
+      $scope.channel.channel_account.status === status;
+  };
+  
+  var inactive = function(){
+    return channelExistsAndStatus("inactive");
+  };
+  
+  var betting = function(){
+    return channelExistsAndStatus("betting_open");
+  };
+  
+  var waiting = function(){
+    return channelExistsAndStatus("betting_closed");
+  };
+  
+  var placeholderText = function(){
+    return betting()
+      ?  "Search by name..." 
+      : "Betting disabled...";
+  };
+  
+  var cash = function(){
+    return $scope.channel && 
+      $scope.channel.channel_account.balance;
+  };
+  
+  var initializer = {
+    initialize: function(scope){
+      $scope = scope;
+      
+      $scope.inactive = inactive;
+      $scope.betting = betting
+      $scope.waiting = waiting;
+      
+      $scope.placeholderText = placeholderText;
+      $scope.cash = cash;
+    }
+  };
+  
+  return initializer;
 });
 
+app.directive('logoPanel', function(){
+  return{
+    restrict: 'E',
+    templateUrl: 'logo-panel.html'
+  };
+});
 
+app.directive('activityPanel', function(){
+  return{
+    restrict: 'E',
+    templateUrl: 'activity-panel.html'
+  };
+});
 
+app.directive('bettingPanel', function(){
+  return{
+    restrict: 'E',
+    templateUrl: 'betting-panel.html'
+  };
+});
+
+app.directive('inactivePanel', function(){
+  return{
+    restrict: 'E',
+    templateUrl: 'inactive-panel.html'
+  };
+});
+
+app.directive('waitingPanel', function(){
+  return{
+    restrict: 'E',
+    templateUrl: 'waiting-panel.html'
+  };
+});
+
+app.controller('skullController', 
+  function($scope, skullApi, skullHelpers){
+    skullApi.initialize($scope);
+    skullHelpers.initialize($scope);
+});
