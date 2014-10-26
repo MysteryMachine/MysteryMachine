@@ -160,6 +160,16 @@ app.service('skullHelpers', function(skullApi){
       $scope.channel.channel_account.balance;
   };
   
+  var health = function(){
+    return $scope.loaded && 
+      $scope.channel.channel_account.health;
+  };
+  
+  var maxHealth = function(){
+    return $scope.loaded && 
+      $scope.channel.channel_account.max_health;
+  };
+  
   var rootUrl = function(){
     return "localhost:4000";
   };
@@ -180,6 +190,8 @@ app.service('skullHelpers', function(skullApi){
       
       $scope.placeholderText = placeholderText;
       $scope.cash = cash;
+      $scope.health = health;
+      $scope.maxHealth = maxHealth;
       
       $scope.rootUrl = "localhost:4000";
       $scope.streamUrl = "";

@@ -2,7 +2,7 @@
 	<div class="col-md-2"></div>
 	
 	<div class="col-md-8 text-center">
-		<p> Welcome to Skull Beggar! </p>
+		<div class="bottom-2"> Welcome to Skull Beggar! </div>
 		
 		<p> 
 			{{ owner ? "Your" : "This" }} channel is currently in an inactive 
@@ -15,10 +15,6 @@
 				<a href="{{ streamUrl }}" target="_none"> here </a>
 				to be taken to their stream.
 			</span>
-		</p>
-		
-		<p ng-if="owner">
-			<button class="btn"> Open Betting </button>
 		</p>
 		
 		<p>
@@ -35,6 +31,7 @@
 			To create a channel for your own stream, click 
 			<a href="{{ rootUrl }}" target="_self"> here</a>.
 		</p>
+
 	</div>
 	
 	<div class="col-md-2"></div>
