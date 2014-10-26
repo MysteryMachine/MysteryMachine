@@ -3,14 +3,31 @@ var app = angular.module('skullBeggar', ['ngResource']);
 app.service('skullApi', function($resource, $location){
   var root = "http://localhost:3000";
   
+  var setOwner = function(){
+    if(this.$scope.loaded){
+      this.$scope.owner = 
+        this.$scope.user.channel_id === this.$scope.channel.id;
+    }  
+  };
+  
+  var setChannelDataIntoScope = function(){
+    this.$scope.loaded = loaded.call(this);
+    this.$scope.streamUrl = 
+      "http://www.twitch.tv/" + this.$scope.channel.name;
+    this.$scope.streamerName = this.$scope.channel.display_name;
+    setOwner.call(this);
+  };
+  
   // Load the resource into the scope. If the page has
   // no channel_id search, try to redirect to the user's
   // channel. If the user has no channel, make it before
   // redirecting
   var loadUserPass = function(response){
     this.$scope.user = response;
+    this.$scope.loaded = loaded.call(this);
+    setOwner.call(this);
     
-    if(!this.$scope.channelId){
+    if(!this.$scope.channelName){
       if(this.$scope.user.channel_id){
         loadUsersChannel.call(this);
       }
@@ -26,6 +43,7 @@ app.service('skullApi', function($resource, $location){
   
   var loadChannelPass = function(response){
     this.$scope.channel = response;
+    setChannelDataIntoScope.call(this);
   };
   
   var loadChannelFail = function(response){
@@ -34,27 +52,28 @@ app.service('skullApi', function($resource, $location){
   
   var createChannelPass = function(response){
     this.$scope.channel = response;
-    $location.search("channel_id", response.id);
+    setChannelDataIntoScope.call(this);
+    $location.search("channel", response.name);
   };
   
   // If the channel_id is in the search, load it into the scope
-  var loadChannelId = function(){
-    var cid = $location.search()["channel_id"];
-    if(angular.isString(cid)){
-      this.$scope.channelId = cid;
+  var loadChannelName = function(){
+    var name = $location.search()["channel"];
+    if(angular.isString(name)){
+      this.$scope.channelName = name;
     } 
   };
   
   // If the load passes, just load resource into the scope,
   // otherwise it is a critical failure
   var loadChannel = function(){
-    this.Channel.get({id: this.$scope.channelId}, 
+    this.Channel.get({name: this.$scope.channelName}, 
       loadChannelPass.bind(this), 
       loadChannelFail.bind(this));
   };
   
   var loadUsersChannel = function(){
-    $location.search("channel_id", this.$scope.user.channel_id);
+    $location.search("channel", this.$scope.user.name);
   };
   
   // If the creation works, redirect to that channel page, otherwise
@@ -68,6 +87,10 @@ app.service('skullApi', function($resource, $location){
   // is no channel_id in scope
   var loadUser = function(){
     this.User.get({}, loadUserPass.bind(this), loadUserFail.bind(this));
+  };
+  
+  var loaded = function(){
+    return this.$scope.user && this.$scope.channel;
   };
   
   var api = {
@@ -88,7 +111,7 @@ app.service('skullApi', function($resource, $location){
     }),
     Channel: $resource(root + "/channels/:id.json", {id: '@id'},{
       'create': { method: 'POST', url: root + "/channels.json", withCredentials: true },
-      'get': { method: 'GET', withCredentials: true },
+      'get': { method: 'GET', url: root + "/channels/:name.json", withCredentials: true },
       'rest': { method: 'POST', url: root + "/channels/:id/rest.json", withCredentials: true },
       'donateBlood': { method: 'POST', url: root + "/channels/:id/donate_blood.json", withCredentials: true },
       'bet': { method: 'POST', url: root + "/channels/:id/bet.json", withCredentials: true }
@@ -97,8 +120,8 @@ app.service('skullApi', function($resource, $location){
     initialize: function($scope){
       this.$scope = $scope;
       
-      loadChannelId.call(this);
-      if($scope.channelId){ loadChannel.call(this); }
+      loadChannelName.call(this);
+      if($scope.channelName){ loadChannel.call(this); }
       loadUser.call(this);
     }
   }
@@ -110,7 +133,7 @@ app.service('skullHelpers', function(skullApi){
   var $scope;
   
   var channelExistsAndStatus = function(status){
-    return $scope.channel && 
+    return $scope.loaded && 
       $scope.channel.channel_account.status === status;
   };
   
@@ -133,8 +156,18 @@ app.service('skullHelpers', function(skullApi){
   };
   
   var cash = function(){
-    return $scope.channel && 
+    return $scope.loaded && 
       $scope.channel.channel_account.balance;
+  };
+  
+  var rootUrl = function(){
+    return "localhost:4000";
+  };
+  
+  var streamUrl = function(){
+    if($scope.user){
+      return "www.twitch.tv/" + $scope.user.name;
+    }  
   };
   
   var initializer = {
@@ -147,6 +180,9 @@ app.service('skullHelpers', function(skullApi){
       
       $scope.placeholderText = placeholderText;
       $scope.cash = cash;
+      
+      $scope.rootUrl = "localhost:4000";
+      $scope.streamUrl = "";
     }
   };
   
@@ -156,35 +192,35 @@ app.service('skullHelpers', function(skullApi){
 app.directive('logoPanel', function(){
   return{
     restrict: 'E',
-    templateUrl: 'logo-panel.html'
+    templateUrl: 'skull-beggar/logo-panel.html'
   };
 });
 
 app.directive('activityPanel', function(){
   return{
     restrict: 'E',
-    templateUrl: 'activity-panel.html'
+    templateUrl: 'skull-beggar/activity-panel.html'
   };
 });
 
 app.directive('bettingPanel', function(){
   return{
     restrict: 'E',
-    templateUrl: 'betting-panel.html'
+    templateUrl: 'skull-beggar/betting-panel.html'
   };
 });
 
 app.directive('inactivePanel', function(){
   return{
     restrict: 'E',
-    templateUrl: 'inactive-panel.html'
+    templateUrl: 'skull-beggar/inactive-panel.html'
   };
 });
 
 app.directive('waitingPanel', function(){
   return{
     restrict: 'E',
-    templateUrl: 'waiting-panel.html'
+    templateUrl: 'skull-beggar/waiting-panel.html'
   };
 });
 

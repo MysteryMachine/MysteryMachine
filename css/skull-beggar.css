@@ -7,8 +7,18 @@ body.skull-beggar{
   font-size: 16px;
   font-weight: 100;
   background-color: #5C4033;
-  color: #333;
+  color: #222;
   font-family: blocky;
+}
+
+button.btn, button.btn:focus{
+  background-color: #85144B;
+  color: #fff;
+}
+
+button.btn:hover, button.btn:active{
+  background-color: #700038;
+  color: #fff;
 }
 
 a{
@@ -38,6 +48,7 @@ div.panel{
 img.money{
   margin-left: 8px;
   margin-top: 10px;
+  margin-right: 1em;
   width: 34px;
 }
 
