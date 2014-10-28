@@ -1,7 +1,10 @@
 var app = angular.module('skullBeggar', ['ngResource']);
 
-app.service('skullApi', function($resource, $location){
+app.service('skullApi', 
+['$resource', '$location', '$timeout', 
+function($resource, $location, $timeout){
   var root = "http://localhost:3000";
+  var channelTimeout = 2000;
   
   var api = {};
   
@@ -18,6 +21,14 @@ app.service('skullApi', function($resource, $location){
       "http://www.twitch.tv/" + this.$scope.channel.name;
     this.$scope.streamerName = this.$scope.channel.display_name;
     setOwner();
+  }.bind(api);
+  
+  // If the channel_id is in the search, load it into the scope
+  var setChannelName = function(){
+    var name = $location.search()["channel"];
+    if(angular.isString(name)){
+      this.$scope.channelName = name;
+    } 
   }.bind(api);
   
   // Load the resource into the scope. If the page has
@@ -46,24 +57,18 @@ app.service('skullApi', function($resource, $location){
   var loadChannelPass = function(response){
     this.$scope.channel = response;
     setChannelDataIntoScope();
+    $timeout(loadChannel, channelTimeout);
   }.bind(api);
   
   var loadChannelFail = function(response){
     this.$scope.criticalError = true;
+    $timeout(loadChannel, channelTimeout);
   }.bind(api);
   
   var createChannelPass = function(response){
     this.$scope.channel = response;
     setChannelDataIntoScope();
     $location.search("channel", response.name);
-  }.bind(api);
-  
-  // If the channel_id is in the search, load it into the scope
-  var loadChannelName = function(){
-    var name = $location.search()["channel"];
-    if(angular.isString(name)){
-      this.$scope.channelName = name;
-    } 
   }.bind(api);
   
   // If the load passes, just load resource into the scope,
@@ -125,15 +130,17 @@ app.service('skullApi', function($resource, $location){
   api["initialize"] = function($scope){
     this.$scope = $scope;
     
-    loadChannelName();
+    setChannelName();
     if($scope.channelName){ loadChannel(); }
     loadUser();
   };
   
   return api;
-});
+}]);
 
-app.service('skullHelpers', function(skullApi){
+app.service('skullHelpers', 
+['skullApi',
+function(skullApi){
   var $scope;
   
   var channelExistsAndStatus = function(status){
@@ -203,7 +210,7 @@ app.service('skullHelpers', function(skullApi){
   };
   
   return initializer;
-});
+}]);
 
 app.directive('logoPanel', function(){
   return{
@@ -241,7 +248,8 @@ app.directive('waitingPanel', function(){
 });
 
 app.controller('skullController', 
-  function($scope, skullApi, skullHelpers){
-    skullApi.initialize($scope);
-    skullHelpers.initialize($scope);
-});
+[ '$scope', 'skullApi', 'skullHelpers',  
+function($scope, skullApi, skullHelpers){
+  skullApi.initialize($scope);
+  skullHelpers.initialize($scope);
+}]);
