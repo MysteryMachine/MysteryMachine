@@ -29,6 +29,17 @@ slides @ sisyphus.rocks/talks/map-reduce-filter
 
 ---
 
+# Motivation
+
+We'll be using these three higher order functions to do data analysis
+in a more modular, declarative, and functional way. Higher order functions
+promote reuse, and, using map and reduce will allow us to easily scale
+our data analysis to thousands of computers using MapReduce frameworks like
+Hadoop. Also, learning about higher order functions is a great stepping stone
+to more complicated functional programming.
+
+---
+
 # Requirements
 
 Know how to define and reference functions in your favorite language.
@@ -249,9 +260,9 @@ is the next value in the list. Reduce is also the only function
 of the three that takes a third argument, an initial value. This
 value is the initial value of our combination.
 
-`reduce(add, [1,2,3,4], 0)` => `5`
+`reduce(add, [1,2,3,4], 0)` => `10`
 
-`reduce(add, [1,2,3,4], 5)`=> `10`
+`reduce(add, [1,2,3,4], 5)`=> `15`
 
 `reduce(concat, ["hel", "lo ", "wor", "ld!"], "")` => "hello world!"
 
