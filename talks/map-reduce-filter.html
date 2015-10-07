@@ -29,6 +29,8 @@ slides @ sisyphus.rocks/talks/map-reduce-filter
 
 ---
 
+class: middle
+
 # Motivation
 
 We'll be using these three higher order functions to do data analysis
@@ -39,6 +41,8 @@ Hadoop. Also, learning about higher order functions is a great stepping stone
 to more complicated functional programming.
 
 ---
+
+class: middle
 
 # Requirements
 
@@ -68,6 +72,8 @@ Clojure
 ```
 ---
 
+class: middle
+
 # What is a higher order function?
 
 A higher order takes functions as arguments and/or returns functions.
@@ -96,6 +102,8 @@ Clojure
 ```
 ---
 
+class: middle
+
 #..cont
 
 Python
@@ -122,6 +130,8 @@ Clojure
 ```
 ---
 
+class: middle
+
 # Higher order list functions
 
 There are a class of higher order functions that exist to transform
@@ -137,6 +147,8 @@ The three most common functions in this family are `filter`, `map`,
 and `reduce`.
 
 ---
+
+class: middle
 
 # Getting these functions
 
@@ -162,6 +174,8 @@ be preceded by this variable.
 
 ---
 
+class: middle
+
 # Filter
 
 Filter is a higher-order function that is used to remove elements from a list.
@@ -170,10 +184,12 @@ an element belongs in the filtered list.
 
 `filter(even, [1,2,3,4,5,6])` => `[2,4,6]`
 
-`filter(greaterThanZero, [-1, 0, 2, 4]` => `[2,4]`
+`filter(greaterThanZero, [-1, 0, 2, 4])` => `[2,4]`
 
 `filter(isString, [1, 2, "hello", 3, 4, 5, "world"])` => `["hello", "world"]`
 ---
+
+class: middle
 
 # cont...
 
@@ -202,6 +218,8 @@ Clojure
 
 ---
 
+class: middle
+
 # Map
 
 Map is a higher order function that uses an function
@@ -223,6 +241,8 @@ map(name, clients) #=> ["Sal", "Jeff", "Batman"]
 ```
 
 ---
+
+class: middle
 
 # ...cont
 
@@ -250,6 +270,8 @@ map(:name, clients) ;;=> ["Sal", "Jeff", "Batman"]
 
 ---
 
+class: middle
+
 # Reduce
 
 Reduce takes a list of things, and uses a function to
@@ -269,6 +291,8 @@ value is the initial value of our combination.
 `reduce(multiply, [2,2,2,2], 1)` => `16`
 
 ---
+
+class: middle
 
 #...cont
 
@@ -295,6 +319,8 @@ Clojure
 ```
 
 ---
+
+class: middle
 
 #Dojo...START!
 
@@ -323,6 +349,8 @@ on your website.
 
 ---
 
+class: middle
+
 # Additional Challenges!
 
 1. Try coding the reduce function in a language of your choice!
@@ -332,6 +360,8 @@ on your website.
 Answers in python on the next pages...
 
 ---
+
+class: middle
 
 # Problem 1
 
@@ -344,6 +374,8 @@ def reduce_dojo(reducer, my_list, start):
 ```
 
 ---
+
+class: middle
 
 # Problem 2
 
