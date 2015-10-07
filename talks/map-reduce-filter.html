@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Map, Reduce, and Filter: Higher Order Functions for Data Analysis.</title>
+        <meta charset="utf-8">
+        <style>
+         @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+         @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+         @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+         body { font-family: 'Droid Serif'; }
+         h1, h2, h3 {
+             font-family: 'Yanone Kaffeesatz';
+             font-weight: normal;
+         }
+         .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+        </style>
+    </head>
+    <body>
+        <textarea id="source">
+
+class: center, middle
+
+# Map, Reduce, and Filter: Higher Order Functions for Data Analysis.
+
+By Sal Becker for the Recurse Center
+
+slides @ sisyphus.rocks/talks/map-reduce-filter
+
+---
+
+# Requirements
+
+Know how to define and reference functions in your favorite language.
+
+Python
+```python
+def inc(a):
+  return a + 1
+
+myfn = inc
+```
+
+Javascript
+```javascript
+function inc(a){
+  return a + 1;
+}
+
+var myfn = inc;
+```
+
+Clojure
+```clojure
+(defn inc [a] (+ 1 a)) ;; Actually, inc is built into Clojure already!
+(def myfn inc)
+```
+---
+
+# What is a higher order function?
+
+A higher order takes functions as arguments and/or returns functions.
+
+Python
+```python
+def pointless()
+  return inc
+
+pointless()(1) #=> 2
+```
+
+Javascript
+```javascript
+function pointless(){
+  return inc;
+}
+
+pointless()(1); //=> 2
+```
+
+Clojure
+```clojure
+(defn pointless [] inc)
+((pointless) 1) ;;=> 2
+```
+---
+
+#..cont
+
+Python
+```python
+def pointless2(number_fun):
+  return number_fun(1)
+
+pointless2(inc) #=> 2
+```
+
+Javascript
+```javascript
+function pointless(numberFun){
+  return numberFun(1);
+}
+
+pointless2(inc); //=> 2
+```
+
+Clojure
+```clojure
+(defn pointless2 [number-fun] (number-fun 1))
+(pointless2 inc) ;;=> 2
+```
+---
+
+# List functions
+
+There are a class of higher order functions that exist to transform
+lists and arrays. These functions abstract the concept of iterating
+over a list.
+
+This means that these higher order functions can be used to replace
+any iteration method that you might use to access, modify, or 
+otherwise consume a list. The most common way of iterating though
+a list is to use a for loop.
+
+The three most common functions in this family are `filter`, `map`,
+and `reduce`.
+
+---
+
+# Getting these functions
+
+If you're in Python, you're in luck! These functions are built in
+to your languge, so you can start using them right now.
+
+`map(...)`
+
+`filter(...)`
+
+`reduce(...)`
+
+If you're in Javascript, you're going to need the help of a library.
+Try using Underscore.js or Lodash.js! These two libraries bind
+these functions to the variable `_`, so functions calls will
+be preceded by this variable.
+
+`_.map(...)`
+
+`_.filter(...)`
+
+`_.reduce(...)`
+
+---
+
+# Filter
+
+Filter is a higher-order function that is used to remove elements from a list.
+It does this by taking a function that returns true or false based on whether
+an element belongs in the filtered list.
+
+`filter(even, [1,2,3,4,5,6])` => `[2,4,6]`
+
+`filter(greaterThanZero, [-1, 0, 2, 4]` => `[2,4]`
+
+`filter(isString, [1, 2, "hello", 3, 4, 5, "world"])` => `["hello", "world"]`
+---
+
+# cont...
+
+Python
+```python
+def even(n):
+  return 0 == (n % 2)
+
+filter(even, [1,2,3,4,5,6]) #=> [2,4,6]
+```
+
+Javascript
+```javascript
+function even(n){
+  return 0 == (n % 2);
+}
+
+_.filter(even, [1,2,3,4,5,6]) //=> [2,4,6]
+```
+
+Clojure
+```clojure
+(defn even? [n] (zero? (mod n 2))) ;; Already exists in Clojure!
+(filter even? [1,2,3,4,5,6]) ;; [2,4,6]
+```
+
+---
+
+# Map
+
+Map is a higher order function that uses an function
+to transform every element of a list.
+
+`map(inc, [1,2,3])` => `[2,3,4]`
+
+`map(halfString, ["ab", "hello", "world"])` => `["a", "hel", "wor"]`
+
+`map(even, [1,2,3,4])` => `[false, true, false, true]`
+
+
+```
+clients = [{"name":"Sal"},
+           {"name":"Jeff"},
+           {"name":"Batman"}]
+
+map(name, clients) #=> ["Sal", "Jeff", "Batman"]
+```
+
+---
+
+# ...cont
+
+Python:
+```python
+def name(client):
+  return client["name"]
+
+map(name, clients) #=> ["Sal", "Jeff", "Batman"]
+```
+
+Javascript
+```javascript
+def name(client){
+  return client.name;
+}
+
+map(name, clients) //=> ["Sal", "Jeff", "Batman"]
+```
+
+Clojure
+```clojure
+map(:name, clients) ;;=> ["Sal", "Jeff", "Batman"]
+```
+
+---
+
+# Reduce
+
+Reduce takes a list of things, and uses a function to
+combine all of them into something. Functions passed into
+reduce need to take two arguements. The first arguement
+is the current value of our combination. The second argument
+is the next value in the list. Reduce is also the only function
+of the three that takes a third argument, an initial value. This
+value is the initial value of our combination.
+
+`reduce(add, [1,2,3,4], 0)` => `5`
+
+`reduce(add, [1,2,3,4], 5)`=> `10`
+
+`reduce(concat, ["hel", "lo ", "wor", "ld!"], "")` => "hello world!"
+
+`reduce(multiply, [2,2,2,2], 1)` => `16`
+
+---
+
+#...cont
+
+Python
+```python
+def add(sum, n):
+  return sum + n
+
+reduce(add, [1,2,3,4], 0) #=> 10
+```
+
+Javascript
+```javascript
+function add(sum,n){
+  return sum + n;
+}
+
+_.reduce(add, [1,2,3,4], 0) #=> 10
+```
+
+Clojure
+```clojure
+(reduce + [1 2 3 4] 0)
+```
+
+---
+
+#Dojo...START!
+
+We work for a very big online sales retail company that just started
+selling goods in bitcoin. We need to generate reports on the sales
+we have just made. Our bosses, specifically, want to know how many
+dollars we've made selling Grace Hopper Coloring Books to young kids,
+ages 5-12. Value of sales vary because of the new haggling feature
+on your website.
+
+```
+[{"age":10, product:"Pterodactyl Coloring Book", "btc":10}
+{"age":20, product:"Grace Hopper Coloring Book", "btc":12}
+{"age":13, product:"Pterodactyl Coloring Book", "btc":11}
+{"age":3, product:"Pterodactyl Coloring Book", "btc":14}
+{"age":5, product:"Terrifying Coloring Book", "btc":11}
+{"age":7, product:"Terrifying Coloring Book", "btc":9}
+{"age":18, product:"Pterodactyl Coloring Book", "btc"8}
+{"age":9, product:"Forbidden Coloring Book", "btc":7}
+{"age":11, product:"Grace Hopper Coloring Book", "btc":14}
+{"age":12, product:"Grace Hopper Coloring Book", "btc":15}
+{"age":28, product:"Pterodactyl Coloring Book", "btc":12}
+{"age":5, product:"Grace Hopper Coloring Book", "btc":6}
+{"age":18, product:"Terrifying Coloring Book", "btc":12}]
+```
+
+---
+
+# Additional Challenges!
+
+1. Try coding the reduce function in a language of your choice!
+
+2. Try coding the map and filter functions in terms of reduce!
+
+Answers in python on the next pages...
+
+---
+
+# Problem 1
+
+```python
+def reduce_dojo(reducer, my_list, start):
+    if len(my_list) == 0:
+        return start;
+    else:
+        return reduce_dojo(reducer, my_list[1:], reducer(start, my_list[0]))
+```
+
+---
+
+# Problem 2
+
+```python
+def appender(my_list, next):
+    my_list.append(next)
+    return my_list
+
+def map_dojo(mapper, my_list):
+    reducer = lambda my_list, next: appender(my_list, mapper(next))
+    return reduce_dojo(reducer, my_list, [])
+
+def filter_dojo(filterer, my_list):
+    reducer = lambda my_list, next: appender(my_list, filterer(next))
+    return reduce_dojo(reducer, my_list, [])
+```
+
+        </textarea>
+        <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+        </script>
+        <script>
+         var slideshow = remark.create();
+        </script>
+    </body>
+</html>
