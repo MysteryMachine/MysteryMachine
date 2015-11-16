@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Intro To Clojure</title>
+        <meta charset="utf-8">
+        <style>
+         @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+         @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+         @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+         body { font-family: 'Droid Serif'; }
+         h1, h2, h3 {
+             font-family: 'Yanone Kaffeesatz';
+             font-weight: normal;
+         }
+         .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+        </style>
+    </head>
+    <body>
+        <textarea id="source">
+
+class: center, middle
+
+# Intro To Clojure
+
+By Sal Becker for the Recurse Center
+
+slides @ sisyphus.rocks/talks/intro-to-clojure
+
+---
+
+class: middle
+
+# Why Clojure?
+
+Clojure is a programming language that maintains a focus on writing simple software.
+It is a language that hails from the LISP family, and it has enjoyed some pretty
+widespread adoption across the industry. Clojure is a data driven language first,
+and while it is most commonly written in a functional style, it is a multi-paradigm
+language suitable for writing object oriented or logic programs as well.
+
+Clojure targets the JVM and the CLR, and it also compile to Javascript. Clojure
+plays nicely with its targets, and features simple interop. To this end, we will
+be writing a webpage in Clojurescript using Facebook's React library.
+
+---
+
+class: middle
+
+**Numbers**
+
+```clojure
+;; A note: In Clojurescript, only doubles exist.
+1   ; Integers are numbers with no decimal
+2.0 ; Doubles are numbers with decimals
+2/3 ; A ratio literal, (* 1/3 1/2) => 1/6
+;; Other number types exist in Clojure
+```
+
+**Collections**
+
+```clojure
+[1 2 3]            ; Vectors represent sequential data
+{:a 1, :b 2, :c 3} ; Hash-maps represent associative (key -> value) data
+{:a 1 :b 2 :c 3}   ; Commas optional
+#{1 2 3 4}         ; Sets represent sequences with no repetition
+'(1 2 3 4)         ; Lists, avoid unless you know what you're doing,
+                   ; these are immutable linked lists, commonly used
+                   ; as stacks.
+;; Data structures nest arbitrarily
+[[1 2] [3 4] [5 6]]
+{[0 0] "a", [0 1] "b", [1 0] "c", [1 1] "d"}
+#{{:a 1} {:a 2} {:a 3}}
+```
+**Misc**
+```clojure
+my-name   ; Symbols are used to hold references to things
+:my-name  ; Keywords are used as keys in maps, feature fast comparison
+"my-name" ; Strings are used to hold text
+nil       ; null in other languages
+```
+---
+
+class: middle
+
+**Definitions and Functions**
+
+In Clojure, we use the `def` special form in order to associate
+symbols to values in our environment. Often (not always) when Clojure encounters
+a symbol, it checks to see if it is defined in our environment, and
+then returns that value.
+
+```clojure
+(def a 1) ; define a to equal 1
+a         ; => 1
+b         ; error! b is not defined.
+
+(+ a 1)              ; => 2, Call the + function with arguments a and 1
+(+ a 1 2 3)          ; => 7
+(+ (- 10 5) (* 2 3)) ; => (+ 5 6) => 11
+(+ (10 1)) ; error! In Clojure, parens are used to call functions
+           ; and not for grouping. 10 is not a function, so an error
+           ; is thrown.
+```
+
+We can make defs be equal to the result of evaluating an expression,
+or to a collection.
+
+```clojure
+(def a (+ 10 12 14 16))
+(def my-vec [1 2 3 4])
+(def my-map {:a 1, :b 2})
+(def c [my-vec my-map]) ; c is bound to [[1 2 3 4] {:a 1 :b 2}]
+```
+---
+
+
+```clojure
+(fn add-2 [a b] (+ a b)) ; Defines a function that takes two arguments,
+; a and b, with name add-2, and returns the result of adding them.
+
+(add-2 1 2)                    ; Error, this function has not actually
+                               ; been stored in our environment
+                               ; The name add-2 is only bound within the
+                               ; function body
+
+(def add-2 (fn [a b] 1 2))     ; To store this function in our environment
+(add-2 1 2)
+                    ; => 3
+(defn add-3 [a b c] (+ a b c)) ; Shortcut for (def ... (fn ...))
+(add-3 1 2 3)                  ; => 6
+
+(#(+ %1 %2) 1 2) ; => 3
+                 ; Anonymous function shortcut. %1 and %2 refer to the first
+                 ; and second arguments passed into the function
+
+```
+---
+
+class: middle
+
+**Doing Things With Collections**
+
+First things first, you need to know how to actually get values
+out of your persistent data structures, and how to build them.
+
+```clojure
+;; constructors
+(vector 1 2 3 4) ;=> [1 2 3 4]
+(hash-map :a 1 :b 2) ;=> {:a 1, :b 2}
+```
+Of course, using the `{}` and `[]` literals are also perfectly
+fine ways to build persistent data structures.
+
+```clojure
+;; get on vectors obtains an index
+(get [1 2 3] 2) ;=> 3
+;; get on maps returns a value associated with a key
+(get {:a 1} :a) ;=> 1
+;; get on a set returns the value if it exists in the set
+(get #{1} 1) ;=>1
+;; get always returns nil if the value does not exist in the collection
+
+;; First and rest are ways to access data structures sequentially
+(first [1 2])       ;=> 1
+(rest [1 2 3 4])    ;=> [2 3 4]
+(first {:a 1})      ;=>[:a 1], this is a key value pair
+(rest {:a 1, :b 2}) ;=> [[:b 2]], This is the sequence of key-val pairs
+```
+
+These access operations run on `O(log32(n))` time.
+---
+
+class: middle
+
+**Building up collections**
+
+None of these operations actually mutate anything. Upon calling
+`conj` or `assoc`, you will obtain a new copy of the collection
+you passed in, with the change you specified tacked on.
+
+```clojure
+;; conj adds a value to a collection, for vectors, it appends
+;; values to the end.
+(conj [1 2] 3)       ;=> [1 2 3]
+(conj [3 4] 1 2 3 4) ;=> [3 4 1 2 3 4]
+
+;; For hash-maps, it associates keyvalue pairs to the hash-map
+(conj {:a 1} [:b 2]) ;=> {:a 1, :b 2}
+(conj {} [:a 1] [:b 2]) ;=> {:a 1, :b 2}
+
+;; For sets, it adds onto the set
+(conj #{1} 1 2) ;=> #{1 2}
+
+;; assoc is for associating things onto maps
+(assoc {} :a 1) ;=> {:a 1}
+(assoc {:a 1} :a 2) ;=> {:a 2}
+;; And for changing vectors
+(assoc [1 2 3] 0 :a) ;=> [:a 2 3],  Your index cannot exceed
+                     ; the length of the vector.
+```
+
+All these operations run on `O(log32(n))`.
+---
+
+class: middle
+
+**Continued...**
+
+If you have to collections that you need to smash together, `into`
+is a way to do it. Into preserves the type of the
+first collection that it encounters, so it can also be used
+for type coercion.
+
+```clojure
+;; into takes two collections, and returns a third collection that is the
+;; result of inserting the second collection into the first.
+(into [1 2] [3 4])        ;=> [1 2 3 4]
+(into {:a 1} {:b 2})      ;=> {:a 1, :b 2}
+
+;; into can be used on heterogenous collections to do type casting
+(into [] {:a 1, :b 2})    ;=>[[:a 1] [:b 2]]
+(into {:c 3} [[:a 1] [:b 2]]) ;=>{:a 1, :b 2, :c 3}
+```
+---
+
+class: middle
+
+**Quickly, some other functions...**
+
+```clojure
+(concat [1 2 3 4] [5]) ;=> [1 2 3 4 5]
+(take 2 [1 2 3 4]) ;=> [1 2]
+(drop 2 [1 2 3 4]) ;=> [3 4]
+(subvec [1 2 3 4 5] 2 4) ;=> [3 4]
+```
+
+Clojure's core library contains LOTS of functions, many of which
+might be exactly what you're looking for to do whatever it is you
+might be looking to do. Clojure's got pretty good documentation,
+and you can find it at 
+[conj.io](http://conj.io) or [ClojureDocs](http://clojuredocs.org/).
+
+---
+
+class: middle
+
+**Map, Filter, Reduce**
+
+These three functions are a common way to do iteration in a functional
+environment. All three take a function and a sequence, and then return
+a result.
+
+```clojure
+;; map applies a function to every element of a sequence
+(map #(+ 10 %) [1 2 3]) ;=> [11 12 13]
+(map #(+ 10 %2) {:a 1 :b 2}) ;=> [11 12]
+
+;; filter applies a function to every element of a sequence and only
+;; returns the elements for which that function call returns a truthy value
+(filter even? [1 2 3]) ;=> [2]
+(filter #(even? (second %)) {:a 1, :b 2}) ;=> [[:b 2]]
+
+;; reduce builds a result by applying a function to an intermediate
+;; result and an element of the sequence being passed in
+(reduce + 5 [1 2 3 4]) ;=> 15
+(reduce #(conj %1 (first %2)) [] {:a 1, :b 2}) ;=> [:a :b]
+
+```
+
+Clojure also provides something called a `loop`, which is still a
+little better than a for loop. For most situations, map, filter, and reduce
+will serve you just fine. If you need to try `loop`, check out the docs at
+[conj.io](http://conj.io) or [ClojureDocs](http://clojuredocs.org/).
+
+---
+
+class: middle
+
+**let**
+
+Functions in Clojure return the last expression they evaluate. If we wish
+to build our result up, we use `let`.
+
+```clojure
+(defn magic-mather [a]
+  (let [b (+ a 1)
+        c (+ b 2)
+        d (* 1 2 3 4)]
+    (* d c a b)))
+```
+
+Let takes vector, that contains symbols, and values to associate with those
+symbols. All expressions below that definition have that value in scope.
+Once outside the vector, but still inside the let expression, we can use
+those values to perform calcualtions, and the last value we return
+will be the value the `let` expression returns.
+
+---
+
+class: middle
+
+**State**
+
+There are many ways to manage state in Clojure. For our site, we will be
+using the simplest tool that Clojure provides us, the `atom`.
+
+```clojure
+(def b (atom 0))
+(swap! b #(+ % 10)) ; change b by passing it into a function, and set b
+                    ; to the result of that function call. In this instance,
+                    ; b is 0, so our function returns (+ 0 10) or 10, so now
+                    ; the value of b is 10.
+(deref b)           ; => 10
+@b                  ; => 10, Use deref or the @ sign to obtain the value of b
+
+(reset! b 15)       ; Use reset! to change b to a value without using a function
+(deref b)           ; => 15
+```
+
+These semantics may seem a little odd, but they are there to make atoms safe to
+use in asynchronous settings. Atoms are consistent, at all times, in that they
+either require a completely built up value to `reset!`, or a function. If a
+function is provided, the atom will never be in a half built up state, it will
+only change once it obtains a value from the function call.
+
+---
+
+class: middle
+**Namespaces**
+
+Clojure gives you access to namespaces. You do not need to know too many advanced
+things about namespaces in order to use Clojure, but here are some of the basics.
+
+```clojure
+(ns recurse.core) ; This puts us in a namespace called recurse.core
+
+(ns recurse.core
+  (:require [reagent.core :as reagent :refer [render-component]]))
+
+;; This call is more complex, but is all you'll need for most things.
+;; This call puts us in a namespace called recuse.core, and in that
+;; namespace it allows us to call all functions in reagent.core through
+;; the name reagent. It also directly inserts the function render-component
+;; into our namespace.
+
+(reagent/render-component ...) ; Is a valid way to call this function
+(render-component ...)         ; Is also a valid way to call this function
+```
+
+Namespaces are critical in order to keep functions well separated, and to
+cleanly using other peoples code in our code.
+
+---
+
+class: center, middle
+
+We have everything we need to define our own basic site! We just need one thing...
+
+---
+
+# Leiningen
+
+We need to install Leinigen first. Leinigen is one of two Clojure package managers.
+Those of you who use a Mac can just use brew to quickly install. Those of you who
+do not use brew should visit http://leiningen.org/ to install. Windows users have
+the option of using an installer, but otherwise, you will have to follow their
+instructions.
+
+```bash
+$ brew install leiningen
+```
+
+After installation, switch to a fresh directory and run
+
+```bash
+$ lein new figwheel hello-clojure -- --reagent
+```
+
+This will create a new project for us named hello-clojure. Open src/hello-clojure/core.clj.
+
+---
+
+class: middle
+
+We don't need everything that was autogenerated for us. Change your codebase to look
+like this:
+
+```clojure
+(ns hello-clojure.core
+  (:require [reagent.core :as reagent :refer [atom]]))
+
+(enable-console-print!)
+
+(defonce app-state (atom 0))
+
+(defn hello-world []
+  [:h1 "Hello world!"])
+
+(reagent/render-component [hello-world]
+                          (. js/document (getElementById "app")))
+```
+
+You might be wondering what the `(. js/document (getElementById "app"))`
+call over at the bottom is. This is Clojurescript interop with Javascript.
+It translates, directly, to `document.getElementById("app")` in Javascript.
+Everything that is in the global scope of Javascript is under the `js` name
+space, and we use the `.` to call a function contained inside a raw
+Javascript object. The final argument `(getElementById "app")` is the
+name of the function that we are calling, and our argument to it.
+
+---
+
+class: middle
+
+# Dojo
+
+Implement a webpage that counts the number of times we click a button. If
+we want to do something more complex, we can go on and do that too, after
+we complete our simple implementation.
+
+---
+
+class: middle, center
+
+# Fin
+
+        </textarea>
+        <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+        </script>
+        <script>
+         var slideshow = remark.create();
+        </script>
+    </body>
+</html>
