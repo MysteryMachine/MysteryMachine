@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Records, Protocols, Multimethods</title>
+        <meta charset="utf-8">
+        <style>
+         @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+         @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+         @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+         body { font-family: 'Droid Serif'; }
+         h1, h2, h3 {
+             font-family: 'Yanone Kaffeesatz';
+             font-weight: normal;
+         }
+         .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+        </style>
+    </head>
+    <body>
+        <textarea id="source">
+
+class: center, middle
+
+# Records, Protocols, Multimethods
+
+By Sal Becker for the Recurse Center
+
+slides @ sisyphus.rocks/talks/protocols-multimethods-records
+
+---
+
+class:  middle
+
+# Motivation
+
+It is a commonly pattern in programning to want to alter a functions behavior
+based on the arguments passed to it. In Clojure, the simplest way to achieve
+that is to use a `case` statement.
+
+```clojure
+(defn foo [a b]
+  (case a
+    :bar {:a b}
+    :baz {:b :a}))
+```
+
+What this method has in simplicity, it loses in extensibility. What if users
+want to take part of your abstraction and extend it for their own data structures
+and use cases. Furthermore, what if you need something like this?
+
+```clojure
+(defn boop [a]
+  (case (type a)
+    ...))
+```
+
+This is especially messy, and any explicit runtime type check is prone to bugs,
+overcoupling, and generally a bad time for everyone involved.
+
+---
+
+class: middle
+
+# Records
+
+Records are like Clojure hashmaps with type metadata associated with them.
+Records can implement Protocols, and they also have a set number of fields that
+they always required.
+
+```clojure
+(defrecord Dog [bark breed])
+(Dog. "woof" "Corgi")
+(map->Dog {:bark "woof", :breed "Corgi"})
+```
+
+To work with records, just think of them as normal hashmaps. All functions that work
+on vanilla Clojure hashmaps work on a record.
+
+---
+
+class: middle
+
+# Protocols, Solving Type Dispatch
+
+```clojure
+(defprotocol Runnable (run [this]))
+
+(defrecord Runner [legs]
+  Runnable
+  (run [this] (move (:legs this))))
+
+(defrecord Program [code])
+(extend-type Program
+  Runnable
+  (run [this] (execute (:code this))))
+
+(run (Program. "(+ 1 2)"))
+(run (Runner. [:leg1 :leg2 :leg3]))
+```
+
+Protocols provide functions in a namespace. You can call that function on any
+record or types that implements that Protocol. To implement the Protocol,
+a Record must implement every function defined in the Protocol, with the
+same function signature. A Protocol can define multiple functions. Every function
+must take one argument, a this, which is the object whose type we are dispatching on.
+Additional arguments can also be provided. Protocols can be implemented on or after the
+time the record is defined.
+
+---
+
+class: middle
+
+# Multimethods, Beyond Type Dispatch
+
+```clojure
+(defmulti  fizzbuzz
+  (fn [n]
+    [(zero? (rem n 3)) (zero? (rem n 5))]))
+(defmethod fizzbuzz [true  true]  [n] "Fizzbuzz")
+(defmethod fizzbuzz [true  false] [n] "Fizz")
+(defmethod fizzbuzz [false true]  [n] "Buzz")
+(defmethod fizzbuzz [false false] [n] n)
+(map fizzbuzz (range 1 100))
+
+```
+
+Multimethods are defined with a function that is applied to its arguments. The multimethod
+takes the value returned by that function and selects a defmethod whose value is equal to
+the return value. To get type dispatch similar to protocols, you'd maybe write
+`(defmulti fizzbuzz #(type %1))` to dispatch on the type of the first argument.
+
+Multimethods are more powerful than protocols, but they are also slightly slower. If you
+are dispatching on type, consider using a protocol instead.
+
+---
+
+class: middle
+
+# When To Use What?
+
+Use pure data if you can. If a hashmap will do, use the hashmap.
+
+Use a record and protocols
+if you find yourself inserting lots of functions into a hashmap. If you ever write this
+((:my-fn this) this), stop yourself, write a protocol and a record, and use that instead.
+A one off protocol is better than just polluting your data with lots of functions. Simple
+data is easier to work with, is easier to serialize.
+
+Use records if after profiling, you realized you lose a lot of speed creating the same hashmaps.
+Record creation is faster than hashmap creation, so if you're creating thousands of a 3 field
+hashmap, a record might serve you better.
+
+Use records if you need to change behavior based on types. If you are changing behavior
+based on something a little more complex than types, use multimethods instead.
+
+---
+
+class: middle
+
+# Cont...
+
+Use multimethods if your objects change behavior based on some sort of grouping. Your objects
+might all be different, but behaviorly they can be caterogized based on some sort of shared
+property.
+
+Use multimethods and protocols over a `cond` or `case` if you would like your users to be
+able to participate in your abstraction. If your worldview is not exhaustive, then a
+multimethod and protocol may allow for your abstraction to be more useful.
+
+---
+
+class: middle
+
+# Dojo: LISPmon
+
+Let's implement a small game in Reagent where we can play Pokemon. In it, we'll use all
+three concepts that we learned in this talk, plus some Reagent basics!
+
+---
+
+class: middle, center
+
+# Fin
+
+        </textarea>
+        <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+        </script>
+        <script>
+         var slideshow = remark.create();
+        </script>
+    </body>
+</html>
