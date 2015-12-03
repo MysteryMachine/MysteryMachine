@@ -123,11 +123,18 @@ let's take a look at what they do!
 
 (defmacro +state [prefab & hooks]
   (let [sym (gensym)]
-    (concat
-     `(let [~sym ~prefab]
+    `(let [~sym ~prefab]
         (when-not (state ~sym)
           (add-component ~sym ArcadiaState))
-        ~@(map (fn [hook] (hook-expand sym hook)) hooks)))))
+        ~@(map (fn [hook] (hook-expand sym hook)) hooks))))
+
+(macroexpand-1 '(state+ (the "Canvas") (UpdateHook [this] (log this))))
+; Becomes
+; (clojure.core/let [G__2269 (the "Canvas")]
+;    (clojure.core/when-not (folha.core/state G__2269)
+;      (arcadia.core/add-component G__2269 ArcadiaState))
+;    (clojure.core/let [c__5879__auto__ (arcadia.core/add-component G__2269 UpdateHook)]
+;      (set! (.fn c__5879__auto__) (clojure.core/fn [fn* [p1__2261#] (log p1__2261#)]))))
 ```
 
 ---
