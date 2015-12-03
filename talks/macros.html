@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LISP Sytle Macros: Cruse Control for DSL Cool</title>
+        <meta charset="utf-8">
+        <style>
+         @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+         @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+         @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+         body { font-family: 'Droid Serif'; }
+         h1, h2, h3 {
+             font-family: 'Yanone Kaffeesatz';
+             font-weight: normal;
+         }
+         .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+        </style>
+    </head>
+    <body>
+        <textarea id="source">
+
+class: center, middle
+
+# LISP Style Macros: Cruise Control for DSL Cool
+
+By Sal Becker for the Recurse Center
+
+slides @ sisyphus.rocks/talks/intro-to-clojure
+
+---
+
+class: middle
+
+# What is a Macro?
+
+Little programs inside your code that recieve your code as strings,
+and use lots of complicated regexps to manipulate things. They allow
+you to create domain specific languages and extend your language.
+
+---
+
+# What is a Macro?
+
+Maybe in C, but this is LISP! In LISP, macros are functions that are
+run before code executes. Macros take advantage of LISP's homoiconic
+nature in order to give LISP programmers a much safer way of defining
+DSLs.
+
+---
+
+# Homoiconic?
+
+LISPs define their code in terms of their own data structures. This
+means that you can map, filter, reduce, whatever, on your own code.
+In LISP, this is a list `(1 2 3 4)`. In LISP, this is code `(+ 1 2 3 4)`.
+They are the same thing. The only difference, is that in one, a function's
+first.
+
+As a footnote, Clojure doesn't allow you to define lists like above. You
+must quote your list so Clojure doesn't try to run it as code. `'(1 2 3 4)`.
+
+In Clojure `[1 2 3 4]` is a vector. In Clojure you find vectors in your
+functions, as well `(defn woah [a b c] (+ a b c))`.
+
+---
+
+# Your First Macro
+
+```clojure
+(defmacro infix [a fun b]
+  (list fun a b))
+
+(infix 1 + 2) ; => 3
+(macroexpand-1 '(infix 1 + 2)) ; => (+ 1 2) <- The return value is both a list AND code.
+```
+
+---
+
+# Beware!
+
+When learning about macros, it is common to want to use them for EVERYTHING. Avoid this!
+Only write macros when you absolutely CANNOT write what you want in the current language.
+Try and write it with functions first!
+
+---
+
+# Case Study
+
+I wanted to be able to write this.
+
+```clojure
+(+state prefab
+       (UpdateHook [this] (sync-agent-velocity! this))
+       (UpdateHook [this] (sync-steering! this)))
+```
+
+---
+
+# Result
+
+Clojure provides you with lots of macro helpers,
+let's take a look at what they do!
+
+```clojure
+(defn hook-expand [prefab decl]
+  (let [hook-name (first decl)
+        args (second decl)
+        body (drop 2 decl)]
+    `(let [c# (add-component ~prefab ~hook-name)]
+      (set! (.fn c#) (fn [~@args] ~@body)))))
+
+(defmacro +state [prefab & hooks]
+  (let [sym (gensym)]
+    (concat
+     `(let [~sym ~prefab]
+        (when-not (state ~sym)
+          (add-component ~sym ArcadiaState))
+        ~@(map (fn [hook] (hook-expand sym hook)) hooks)))))
+```
+
+---
+
+class: middle, center
+
+# Fin
+
+        </textarea>
+        <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+        </script>
+        <script>
+         var slideshow = remark.create();
+        </script>
+    </body>
+</html>
