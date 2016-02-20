@@ -54,3 +54,39 @@ a{
 .bg-grey{
     background-color: #222;
 }
+
+#logo-outer{
+    width: 100%;
+}
+
+#logo{
+    padding-top: 80px;
+    width: 10%;
+    margin: auto;
+    display: block;
+}
+
+.bottom-40{
+    padding-bottom: 40px;
+}
+
+.bottom-80{
+    padding-bottom: 80px;
+}
+
+#sisyphus{
+    color: white;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    : 2em;
+}
+
+.projects{
+    width: 80%;
+    margin: auto;
+}
+
+td{
+    text-align: center;
+}

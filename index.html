@@ -1,130 +1,45 @@
 <html>
     <head>
-        <title>Rock Roller</title>
+        <title>Professional Rock Rollers</title>
         <link rel="stylesheet" href="css/colors.min.css">
         <link rel="stylesheet" href="css/home.css">
+        <link rel="icon"
+              type="image/png" 
+              href="images/logo.png">
     </head>
     <body class="bg-grey">
-        <div id="main" class="bg-white border--black">
-            <!-- <h1 id="header" class="olive"> WELCOME TO MY WEBZONE </h1> -->
-            <div>
-	              <img id="selfie" class="border--black" src="https://pbs.twimg.com/profile_images/615603271709782016/7XK8poTf.jpg" alt="A selfie of me.">
+        <div id="logo-outer" class="bottom-40">
+            <img id="logo" src="images/logo.svg">
+        </div>
 
-                <div style="padding-bottom: 0px"> Email <strong> <a href="mailto:work@sisyphus.rocks">work@sisyphus.rocks</a> </strong> </div>
-                <div style="padding-bottom: 0px"> Twitter <strong> <a href="http://www.twitter.com/mysterysal">@mysterysal</a> </strong> </div>
-                <div style="padding-bottom: 0px"> Github <strong> <a href="http://www.github.com/MysteryMachine">mysterymachine</a> </strong> </div>
-                <div>
-                    <p>
-                        Hey, I'm Sal Becker, a Brazilian born programmer and artist. I primarily work on games and
-                        fullstack web apps. When I work on games, I collaborate with comics artist
-                        <a href="http://www.kjmartinet.com"> KJ Martinet </a> to make art games that explore the dynamic
-                        between play and art. I'm a Clojure and functional wizard. I like Javascript,
-                        and I've been exploring methods of writing it more functionally. I also enjoy educating others
-                        and giving <a href="/talks">talks</a>.
-                        I am a gradudate of the Recurse Center's Fall II class of 2015.
-                    </p>
-
-                    <p>
-                        I am also a strong believer in human rights. While my games focus on advocacy of feminist, racial, economic,
-                        or queer rights, I also advocate through pushing for more diversity in tech.
-                    </p>
-
-                    <p>l
-                        When I am relaxing, I like playing games, weightlifting, watching Twitch.tv, watching movies and shows,
-                        comics, drinking, and
-                        dancing.
-                    </p>
-                </div>
-
-	              <h2> Projects </h2>
-                <div>
-                    <a href="https://github.com/MysteryMachine/jobim"> jobim </a>
-                    <strong>- Recurse Center, Fall 2, 2015</strong>
-                </div>
+        <div id="sisyphus">
+            <div id="sisyphus-inner">
                 <p>
-                    A declarative, data driven slideshow framework that uses Clojurescript's homoiconic nature
-                    to allow presenters to write and run tests against their example code. Tests run live, and jobim
-                    integrates well with Figwheel, allowing for rapid development of presentations. jobim relies on a simple
-                    slide abstraction that you can extend.
-                </p>
-                <div>
-                    <a href="https://github.com/MysteryMachine/folha"> folha </a>
-                    <strong>- RC 2015, Still Under Development</strong>
-                </div>
-                <p>
-                    A library for writing Clojure games in Unity. It aims to abstract a lot of the interop code
-                    that one would need to write in order to use Arcadia, and to provide functional or functional-seeming
-                    interfaces to Unity, while not letting go of the positive elements of Unity's built in component model system.
-                </p>
-                <div>
-                    <a href="https://github.com/MysteryMachine/kushana"> Kushana </a>
-                    <strong>- Recurse Center, Fall 2, 2015</strong>
-                </div>
-                <p>
-                    Kushana is a data driven, functional game engine authored in Clojure and Clojurescript.
-                    It is intended to be used for lo-fi 3d games, and for protyping networked games.
-                    In Kushana, you describe scenes as simple data, and then define middlewares that
-                    transform this data. Kushana then allows you to run that code both on the server and
-                    client sides. This project, as a proof of concept, is done, but its not fit for real development.
-                </p>
-                <div>
-                    <a href="http://sisyphus.rocks/if-a-tree-falls-in-the-forest"> If a Tree Falls in the Forest </a>
-                    <strong>- September, 2015</strong>
-                </div>
-                <p>
-                    Worked with KJ Martinet to produce a short indie horror game for her art show, <em>Abandoned Places, Forgotten Spaces</em>.
-                    In the game, you wander around a forest finding the phantoms of dead animals as you hunt for food.
-                    It uses gameplay to explore the sudden and pervasive realities of death in nature.
-                    The game is in Unity, Arcadia, and Clojure.
-                    <strong>Featured at the NYC Arcade, Winter of 2015!</strong>
-                </p>
-                <div>
-                    <a href="https://www.youtube.com/watch?v=2mgdMhFTa84"> She Blinded Me With Science </a>
-                    <strong>- March, 2015</strong>
-                </div>
-                <p>
-                    Programmed a silly shoot 'em up game using Unity, Arcadia, and Clojure for an art show,
-                    <em>She Blinded Me With Science: Women in Science Fiction</em>. The game was presented at the show
-                    where people could play it live. The game was not released to the public, because it was more
-                    of an educational endeavor for the team, and not meant to receive the sort of polish that
-                    would warrant a public release.
+                    <a href="https://www.kjmartinet.com">KJ Martinet</a> &
+                    <a href="sal-becker.html">Sal Becker</a>
                 </p>
 
-	              <div>
-                    <a href="http://sisyphus.rocks/apps/monster-of-the-week.html"> Monster of the Week </a><strong>- February, 2015</strong>
-                </div>
-	              <p>
-	                  A simple JS app that implements some stuff I learned while
-	                  taking a Coursera course on Automata theory. It uses a syntax
-	                  free grammar to generate random X-Files episodes. Was a
-	                  submission for KJ Martinet's X-Files themed art show.
-	              </p>
+                <p>
+                  We make art games. These are they.
+                </p>
+
                 <div>
-	                  <a href="http://sisyphus.rocks/skull-beggar/"> Skull Beggar </a><strong>- September, 2014</strong>
+                    <table class="projects">
+                        <tr>
+                            <td>
+                                <a href="/if-a-tree-falls-in-the-forest">
+                                    If A Tree Falls In The Forest
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/your-party-has-perished">
+                                    Your Party Has Perished
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-	              <p>
-	                  Skull Beggar was built using Ruby on Rails, Angular.js,
-	                  and Heroku (if you're visiting this app, give Heroku a
-	                  second to spin up). It's a cute
-	                  little app that lets you bet on The Binding of Isaac: Rebirth
-	                  runs. It's got a bunch of nifty features, and was built to be
-	                  relatively mobile friendly.
-	              </p>
             </div>
-
-            <h2> Experience </h2>
-            <div>
-                Priori Legal
-                <strong>- Fall 2013 to Fall 2015</strong>
-            </div>
-            <p>
-                Was soley responsible for large chunks of the product. Utilized Ruby on Rails and Angular.js.
-                Designed and built most of our lawyer vetting process. Built and maintained a complex auto-syncing
-                form for the application processes. Built and maintained the photo processing pipeline.
-                Designed and implemented a Salesforce integration. Implemented a large amount of client facing
-                frontend pages, including a good deal of the templates utilized in our CMS.
-                Built admini tools. Tested and maintained a bunch of other code.
-            </p>
         </div>
     </body>
 </html>
