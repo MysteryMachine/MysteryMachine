@@ -76,15 +76,19 @@ a{
 
 #sisyphus{
     color: white;
-    width: 50%;
+    width: 80%;
     margin: auto;
     text-align: center;
-    : 2em;
+    font-size: 1em;
 }
 
 .projects{
     width: 80%;
     margin: auto;
+}
+
+.projects div{
+    padding-bottom: 30px;
 }
 
 td{
