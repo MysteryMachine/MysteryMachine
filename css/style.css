@@ -1,0 +1,21 @@
+
+/* some style */
+
+body{
+    background-color: #666;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+::selection{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+div:hover, p:hover{
+    cursor:default;
+}
+
+pre{
+    margin: 0;
+}
