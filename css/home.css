@@ -94,3 +94,7 @@ a{
 td{
     text-align: center;
 }
+
+li{
+    padding-bottom: 12px;
+}
