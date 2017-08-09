@@ -14,27 +14,105 @@
                 <div style="padding-bototm: 0px"> Email <strong> <a href="mailto:sal@sisyphus.rocks" target="_top">sal@sisyphus.rocks</a></strong></div>
                 <div>
                     <p>
-                        Hey, I'm Sal Becker, a Brazilian born programmer and artist. I primarily work on games and
-                        fullstack web apps. When I work on games, I collaborate with comics artist
-                        <a href="http://www.kjmartinet.com"> KJ Martinet </a> to make art games that explore the dynamic
-                        between play and art. I'm a Clojure and functional wizard. I like Javascript,
+                        Hey, I'm Sal Becker, a Brazilian born programmer and artist. Professionally, I work on full stack web apps
+                        and distributed systems. I'm a Clojure and functional wizard. I also like Javascript,
                         and I've been exploring methods of writing it more functionally. I also enjoy educating others
-                        and giving <a href="/talks">talks</a>.
-                        I am a gradudate of the Recurse Center's Fall II class of 2015 and I'm a Software Engineer
-                        at Adaptly.
+                        and giving <a href="/talks">talks</a>. I am a gradudate of the Recurse Center's Fall II class of 2015.
                     </p>
 
                     <p>
-                        I am also a strong believer in human rights. While my games focus on advocacy of feminist, racial, economic,
-                        or queer rights, I also advocate through pushing for more diversity in tech.
+                        I am also a strong believer in human rights. Many of my projects focus on advocacy of feminist, racial,
+                        economic, or queer rights.  I am an admin at WeAllJS, an intersectional Javascript community.
                     </p>
 
-                    <p>l
-                        When I am relaxing, I like playing games, weightlifting, watching Twitch.tv, watching movies and shows,
-                        comics, drinking, and
-                        dancing.
+                    <p>
+                        When I am relaxing, I like playing games, yoga, watching movies and shows,
+                        reading comics, drinking, and dancing. I develop art games as my primary hobby, and I
+                        distribute them and the tooling I make for free. I collaborate with comics artist
+                        <a href="http://www.kjmartinet.com"> KJ Martinet </a>.
                     </p>
                 </div>
+
+                <h2> Experience </h2>
+
+                <div>
+                    Adaptly
+                    <strong>- Early 2016 to Summer 2017</strong>
+                </div>
+                <p>
+                    Worked as a backend specialist, designing and implementing distributed caching systems using Twitter and
+                    Facebook's advertisers API. Implemented a flow for backfilling an advertiser's historical stats using
+                    Twitter's asynchronous API. Spearheaded initiatives to test more thoroughly. Designed a testing framework
+                    for Clojure that was specific to our system, which heavily reduced boilerplate code, and entirely eliminated
+                    a vast majority of catastrophic conditions from the test suite, which would render the whole test useless.
+                    Designed developer tooling, which allowed developers to easily introspect, refresh, and reload the system,
+                    promoting REPL driven programming. Refactored complex, mutative elements of code to eliminate race conditions and bugs.
+                    Wrote monitoring tools that caught several production bugs. Worked, in a general capacity, as someone
+                    who monitored the health of the production system, and as someone who took initiative to eliminate
+                    production bugs. Mentored juniors. Contributed to the Clojure open source community as a way to eliminate
+                    bugs found within those libraries.
+                </p>
+
+                <div>
+                    Priori Legal
+                    <strong>- Fall 2013 to Fall 2015</strong>
+                </div>
+                <p>
+                    Was soley responsible for large chunks of the product. Utilized Ruby on Rails and Angular.js, working full stack.
+                    Designed and built most of the lawyer vetting process. Built and maintained a complex auto-syncing
+                    form for the application processes. Built and maintained the photo processing pipeline.
+                    Designed and implemented a Salesforce integration. Implemented a large amount of client facing
+                    frontend pages, including a good deal of the templates utilized in our CMS.
+                    Built admin facing tools.
+                </p>
+
+                <h2> Notable Projects </h2>
+                <div>
+                    <a href="https://github.com/MysteryMachine/syms-qual"> carmen.miranda </a>
+                    <strong>- Under Active Development</strong>
+                </div>
+                <p>
+                    carmen.miranda is a visual novel framework for Clojure. My primarly goal in the framework was
+                    to provide a very quick and declarative way to create visual novel style games. The primary challenge
+                    is the staggering amount of text (100+ word pages for the game I worked on while building this) I had
+                    to input, which required me to build an extremely terse DSL. The library also aids the user with representing
+                    and changing their data, aiming to completely separate the declaration of HTML from the declaration of how
+                    that HTML can change. It enforces a rigidity with Reagent (Clojure's most popular React wrapper)
+                    and requires that the user declares changes in advance using multimethods, to
+                    promote an extremely declarative usage of the Reagent rendering library.
+                </p>
+                <div>
+                    <a href="https://github.com/MysteryMachine/virtual-dom"> virtual-dom </a>
+                    <strong>- Februrary 2017</strong>
+                </div>
+                <p>
+                    Written as a tool to teach people about the language of consent. By having folks use a
+                    Clojure DSL to write a context-free language that would give them self care instructions,
+                    I hoped to teach folks that the language of consent should be explicit, and well established.
+                    It is more of a thought piece than a fully functional tool with all the bells and whistles,
+                    but I did iterate on this based off of user feedback to implement some features.
+                </p>
+                <div>
+                    <a href="https://github.com/MysteryMachine/kibe"> kibe </a>
+                    <strong>- December 2016</strong>
+                </div>
+                <p>
+                    An experimental library I wrote for Clojure that uses a style of monadic dispatch in order to deal
+                    with functions with side effects, or to deal with functions that are likely to throw. This library
+                    was created as a response to a lot of the struggles I was having with stateful code at Adaptly,
+                    but after some review, we decided it was not worth the risk of introducing the new library.
+                    This library uses reified Java classes in order to create special callable objects that require
+                    an error handler for bad behavior.
+                </p>
+                <div>
+                    <a href="https://github.com/MysteryMachine/malandragem"> malandragem </a>
+                    <strong>- September 2016</strong>
+                </div>
+                <p>
+                    A Clojurescript roguelike framework written in a weekend for a Ludum Dare. It takes a data driven
+                    approach to roguelikes, and the library largely works through declarative interfaces. Has a small
+                    sample game contained within the codebase.
+                </p>
                 <div>
                     <a href="https://github.com/MysteryMachine/jobim"> jobim </a>
                     <strong>- Recurse Center, Fall 2, 2015</strong>
